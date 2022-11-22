@@ -1,18 +1,36 @@
-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
-    background-color: white;
+body {
+    padding: 0 40px;
 }
 
-nav {
+
+
+.navbar {
+    height: 40px;
     display: flex;
+    flex-direction: row;
+    margin: 20px;
 }
 
-nav li a{
-    padding: 14px 16px;
-    display: block;
+.navbar a {
+    display: inline;
+    padding: 10px;
+}
+
+#search {
+    padding: 0 30px;
+    width: 30vw;
+    border-radius: 20px;
+    border: 2px solid grey;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#search:focus {
+    border: 2px solid lightsalmon;
+}
+
+#home {
+    margin-left: 100px;
 }
 
 nav a:link, a:visited{
@@ -24,14 +42,7 @@ nav a:hover, .dropdown:hover .dropbtn {
     background-color: lightsalmon;;
 }
 
-nav li{
-    padding-left: 20px;
-    padding-right: 20px;
-    display: inline-block;
-}
-
 .dropdown {
-    float: left;
     overflow: hidden;
 }
   
@@ -40,13 +51,11 @@ nav li{
     border: none;
     outline: none;
     color: grey;
-    padding: 14px 16px;
+    padding: 10px;
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
 }
-
-
 
 .dropdown-content {
     display: none;
@@ -74,4 +83,18 @@ nav li{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* .item {
+    width: 10vw;
+    height: 10vh;
+    border: 2px solid black;
+} */
+
+.item img {
+    width: 20vw;
 }
