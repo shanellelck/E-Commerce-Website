@@ -1,4 +1,18 @@
 
+<?php
+
+@include 'config.php';
+
+session_start();
+
+$user_id = $_SESSION['user_id'];
+
+if(!isset($user_id)){
+    header('location:login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <HTML>
     <header>
@@ -31,6 +45,7 @@
                 <li><a class="left" href="#about-us">ABOUT US</a></li>
                 <li><a class="left" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <li><a class="left" href="./profile.php"><i class="fa-solid fa-user"></i></a></li>
+                <a href ="logout.php">logout</a>
             </ul>
   
         </nav>

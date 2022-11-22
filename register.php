@@ -1,25 +1,33 @@
 <?php
 
-@include 'config.php';
-
-session_start();
+include 'config.php';
 
 if(isset($_POST['submit'])){
 
+    $name = $_POST['name'];
+    $name = filter_var($name, FILTER_SANITIZE_STRING);
     $email = $_POST['email'];
     $email = filter_var($email, FILTER_SANITIZE_STRING);
     $pass = md5($_POST['pass']);
     $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+    $cpass = md5($_POST['cpass']);
+    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
  
-    $select = $conn->prepare("SELECT * FROM `customer` WHERE email = ? AND password = ?");
-    $select->execute([$email, $pass]);
-    $row = $select -> fetch(PDO::FETCH_ASSOC);
+    $select = $conn->prepare("SELECT * FROM `customer` WHERE email = ?");
+    $select->execute([$email]);
 
     if($select->rowCount() > 0){
-        $_SESSION['user_id'] = $row['id'];
-        header('location:index.php');
-     }else{
-        $message[] = 'Incorrect username or password!';
+        $message[] = 'user email already exist!';
+    }else{
+        if($pass != $cpass){
+            $message[] = 'password not matched!';
+        }else{
+            $insert = $conn -> prepare("INSERT INTO `customer`(name, email, password) VALUES (?,?,?)");
+            $insert->execute([$name, $email, $pass]);
+            
+            $message[] = 'registered successful!';
+            header('location:login.php');
+        }
     }
 
 }
@@ -33,7 +41,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>register</title>
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -58,11 +66,13 @@ if(isset($message)){
     
 <section class="form-container">
     <form action="" enctype="multipart/form-data" method="POST">
-        <h3>login now</h3>
+        <h3>Register Now</h3>
+        <input type="text" name="name" class="box" placeholder="enter your name" required>
         <input type="email" name="email" class="box" placeholder="enter your email" required>
         <input type="password" name="pass" class="box" placeholder="enter your password" required>
-        <input type="submit" value="login now" class="btn" name="submit">
-        <p>don't have an account? <a href="register.php">register now</a></p>
+        <input type="password" name="cpass" class="box" placeholder="confirm your password" required>
+        <input type="submit" value="register now" class="btn" name="submit">
+        <p>already have an account? <a href="login.php">login now</a></p>
 
     </form>
 </section>

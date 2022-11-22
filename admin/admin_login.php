@@ -1,6 +1,6 @@
 <?php
 
-@include 'config.php';
+include '../config.php';
 
 session_start();
 
@@ -11,13 +11,13 @@ if(isset($_POST['submit'])){
     $pass = md5($_POST['pass']);
     $pass = filter_var($pass, FILTER_SANITIZE_STRING);
  
-    $select = $conn->prepare("SELECT * FROM `customer` WHERE email = ? AND password = ?");
+    $select = $conn->prepare("SELECT * FROM `admin` WHERE email = ? AND password = ?");
     $select->execute([$email, $pass]);
     $row = $select -> fetch(PDO::FETCH_ASSOC);
 
     if($select->rowCount() > 0){
-        $_SESSION['user_id'] = $row['id'];
-        header('location:index.php');
+        $_SESSION['admin_id'] = $row['id'];
+        header('location:dashboard.php');
      }else{
         $message[] = 'Incorrect username or password!';
     }
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="../css/components.css">
 
 </head>
 <body>
@@ -62,8 +62,6 @@ if(isset($message)){
         <input type="email" name="email" class="box" placeholder="enter your email" required>
         <input type="password" name="pass" class="box" placeholder="enter your password" required>
         <input type="submit" value="login now" class="btn" name="submit">
-        <p>don't have an account? <a href="register.php">register now</a></p>
-
     </form>
 </section>
 
