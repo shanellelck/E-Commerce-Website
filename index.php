@@ -30,7 +30,7 @@
             ?>
             <div class="item">
                 <p class="item-name"><?= $item['Name'];?></p>
-                <img src="<?= $item['img'];?>"/>
+                <img src="<?= $item['Img'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
                 <a href="item.php">
                     <button type="button" class="btn">More</button>
