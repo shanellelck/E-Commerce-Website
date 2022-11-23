@@ -100,9 +100,7 @@ h1 {
 }
 
 /*-----cart items-----*/
-.cart-page{
-    overflow-x: auto;
-}
+
 .cart-page{
     margin: 80px auto;
 }
