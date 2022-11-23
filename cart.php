@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <td>Total</td>
-                <td>$220 </td>
+                <td>$120 </td>
             </tr>
         </table>
 </div>
