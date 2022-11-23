@@ -16,11 +16,6 @@
     die("Connection failed: " . $conn->connect_error);
     }
 
-    // echo "Connected successfully";
-
-    // mysqli_close($con);
-    // $con = mysqli_connect('localhost', 'root', 'annyeong471');
-    // mysqli_select_db($con, 'shop');
     $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id='SSH';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 ?>
