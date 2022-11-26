@@ -12,18 +12,23 @@
     $conn = mysqli_connect($servername, $username, $password, $database);
     // Check connection
 
-$user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-    header('location:login.php');
-};
+    @include 'config.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
- }
+    session_start();    
 
-    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id ='SSH';";
-    $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
+    $user_id = $_SESSION['user_id'];
+
+    if(!isset($user_id)){
+        header('location:login.php');
+    };
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+        $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id ='SSH';";
+        $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 ?>
 
 
