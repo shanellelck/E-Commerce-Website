@@ -1,9 +1,12 @@
 <?php include "header.php" ?>
 
 <?php
+
+    //@include 'config.php';
+    
     // Create connection
     $servername = "localhost";
-    $database = "shop";
+    $database = "ecommerce_db";
     $username = "root";
     $password = "";
 
@@ -11,15 +14,21 @@
 
     $conn = mysqli_connect($servername, $username, $password, $database);
     // Check connection
-
     if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+        die("Connection failed: " . $conn->connect_error);
     }
+    
+    session_start();    
 
-    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id ='SSH';";
-    $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
+    $user_id = $_SESSION['user_id'];
+
+    if(!isset($user_id)){
+        header('location:login.php');
+    };
+
+        $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
+        $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 ?>
-
 
 
 <body>
@@ -33,7 +42,7 @@
             <div class="item">
                 <?php $item_id = $item['Item_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
-                <img src="<?= $item['Img'];?>"/>
+                <img src="<?= $item['Image'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
                 <a href="item.php?item_id=<?php echo $item_id ?>">
                     <button type="button" class="btn">More</button>

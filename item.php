@@ -3,7 +3,7 @@
 <?php
     // Create connection
     $servername = "localhost";
-    $database = "shop";
+    $database = "ecommerce_db";
     $username = "root";
     $password = "";
 
@@ -16,9 +16,17 @@
     die("Connection failed: " . $conn->connect_error);
     }
 
+    session_start();    
+
+    $user_id = $_SESSION['user_id'];
+
+    if(!isset($user_id)){
+        header('location:login.php');
+    };
+
     $item_id = $_GET['item_id'];
     // echo $item_id;
-    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE item_id = '$item_id';";
+    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Item_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
     
@@ -31,7 +39,7 @@
                 while($item = mysqli_fetch_assoc($new_arrivals)):
             ?>
             <div class="item-img">
-                <img src="<?= $item['Img'];?>"/>
+                <img src="<?= $item['Image'];?>"/>
             </div>
             <div class="item-view">
                 <p class="item-view-name"><?= $item['Name'];?></p>

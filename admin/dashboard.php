@@ -7,7 +7,7 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if(!isset($admin_id)){
-    header('location:login.php');
+    header('location:admin_login.php');
 }
 
 ?>
@@ -23,7 +23,6 @@ if(!isset($admin_id)){
 <body>
 
 <h1></h1>
-<a href ="../logout.php">logout</a>
-    
+<a href ="admin_logout.php">logout</a>
 </body>
 </html>

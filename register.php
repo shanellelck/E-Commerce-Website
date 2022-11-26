@@ -1,29 +1,32 @@
 <?php
 
-include 'config.php';
+include 'connection.php';
 
 if(isset($_POST['submit'])){
 
-    $name = $_POST['name'];
-    $name = filter_var($name, FILTER_SANITIZE_STRING);
-    $email = $_POST['email'];
-    $email = filter_var($email, FILTER_SANITIZE_STRING);
-    $pass = md5($_POST['pass']);
-    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
-    $cpass = md5($_POST['cpass']);
-    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
- 
-    $select = $conn->prepare("SELECT * FROM `customer` WHERE email = ?");
-    $select->execute([$email]);
+   
+    $filter_name = filter_var($$_POST['name'], FILTER_SANITIZE_STRING);
+    $name = mysqli_real_escape_string($conn, $filter_name);
+    
+    $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+    $email = mysqli_real_escape_string($conn, $filter_email);
+    
+    $filter_pass = filter_var(md5($_POST['pass']), FILTER_SANITIZE_STRING);
+    $pass = mysqli_real_escape_string($conn, $filter_pass);
+    
+    $filter_cpass = filter_var(md5($_POST['cpass']), FILTER_SANITIZE_STRING);
+    $cpass = mysqli_real_escape_string($conn, $filter_cpass);
 
-    if($select->rowCount() > 0){
+    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE email = '$email'") or die('query failed');
+
+    if(mysqli_num_rows($select) > 0){
         $message[] = 'user email already exist!';
-    }else{
+    }else{ 
         if($pass != $cpass){
             $message[] = 'password not matched!';
         }else{
-            $insert = $conn -> prepare("INSERT INTO `customer`(name, email, password) VALUES (?,?,?)");
-            $insert->execute([$name, $email, $pass]);
+            mysqli_query($conn, "INSERT INTO `customer`(`name`, `email`, `password`) VALUES ('$name','$email','$pass')")
+            or die('query failed');
             
             $message[] = 'registered successful!';
             header('location:login.php');

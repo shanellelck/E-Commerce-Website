@@ -29,6 +29,7 @@
                 <a class="left" href="#about-us">ABOUT US</a>
                 <a class="left" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                 <a class="left" href="./profile.php"><i class="fa-solid fa-user"></i></a>
+                <a href ="logout.php">logout</a>
             </div>
             
             <!-- <ul>
