@@ -1,21 +1,21 @@
 <?php
 
-@include 'config.php';
+@include 'connection.php';
 
 session_start();
 
 if(isset($_POST['submit'])){
 
-    $email = $_POST['email'];
-    $email = filter_var($email, FILTER_SANITIZE_STRING);
-    $pass = md5($_POST['pass']);
-    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+    $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+    $email = mysqli_real_escape_string($conn, $filter_email);
+    
+    $filter_pass = filter_var(md5($_POST['pass']), FILTER_SANITIZE_STRING);
+    $pass = mysqli_real_escape_string($conn, $filter_pass);
  
-    $select = $conn->prepare("SELECT * FROM `customer` WHERE email = ? AND password = ?");
-    $select->execute([$email, $pass]);
-    $row = $select -> fetch(PDO::FETCH_ASSOC);
+    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
-    if($select->rowCount() > 0){
+    if(mysqli_num_rows($select) > 0){
+        $row = mysqli_fetch_assoc($select);
         $_SESSION['user_id'] = $row['id'];
         header('location:index.php');
      }else{
