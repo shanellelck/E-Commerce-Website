@@ -5,7 +5,7 @@ include 'connection.php';
 if(isset($_POST['submit'])){
 
    
-    $filter_name = filter_var($$_POST['name'], FILTER_SANITIZE_STRING);
+    $filter_name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $name = mysqli_real_escape_string($conn, $filter_name);
     
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
