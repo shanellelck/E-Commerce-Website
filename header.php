@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width =device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style-item.css">
         <script src="https://kit.fontawesome.com/5ca4d9b311.js" crossorigin="anonymous"></script>
         <title></title>
     </head>
@@ -13,7 +14,7 @@
                 <a href='./index.php' class="logo">
                     <img id="logo" src = './logo.jpg'>
                 </a>   
-                <input type="text" id="search" placeholder="Search..">
+                <input type="text" id="search" placeholder="Search...">
                 <a id="home" href="./index.php">HOME</a>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING

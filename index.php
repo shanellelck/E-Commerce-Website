@@ -1,16 +1,6 @@
 <?php include "header.php" ?>
 
 <?php
-    @include 'config.php';
-
-    session_start();
-
-    $user_id = $_SESSION['user_id'];
-
-    if(!isset($user_id)){
-        header('location:login.php');
-    }
-
     // Create connection
     $servername = "localhost";
     $database = "shop";
@@ -26,9 +16,11 @@
     die("Connection failed: " . $conn->connect_error);
     }
 
-    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id='SSH';";
+    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id ='SSH';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 ?>
+
+
 
 <body>
     <section id="new-arrivals">
@@ -39,10 +31,11 @@
                 while($item = mysqli_fetch_assoc($new_arrivals)):
             ?>
             <div class="item">
+                <?php $item_id = $item['Item_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
                 <img src="<?= $item['Img'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
-                <a href="item.php">
+                <a href="item.php?item_id=<?php echo $item_id ?>">
                     <button type="button" class="btn">More</button>
                 </a>
             </div>
