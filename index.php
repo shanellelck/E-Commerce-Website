@@ -1,51 +1,58 @@
 <?php include "header.php" ?>
 
 <?php
-    // Create connection
-    $servername = "localhost";
-    $database = "shop";
-    $username = "root";
-    $password = "";
 
-    // Create connection
+@include 'config.php';
 
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Check connection
+session_start();
 
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
+$user_id = $_SESSION['user_id'];
 
-    $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE category_id='SSH';";
-    $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
+if(!isset($user_id)){
+    header('location:login.php');
+}
+
 ?>
 
-<body>
-    <section id="new-arrivals">
-        <h1>New Arrivals</h1>
-        <div class="tops">
-            <h2>Tops</h2>
-            <?php 
-                while($item = mysqli_fetch_assoc($new_arrivals)):
-            ?>
-            <div class="item">
-                <p class="item-name"><?= $item['Name'];?></p>
-                <img src="<?= $item['Img'];?>"/>
-                <p class="item-price">$<?= $item['Price'];?></p>
-                <a href="item.php">
-                    <button type="button" class="btn">More</button>
-                </a>
+<!DOCTYPE html>
+<HTML>
+    <header>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width =device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://kit.fontawesome.com/5ca4d9b311.js" crossorigin="anonymous"></script>
+        <title></title>
+    </header>
+    <body>
+        <nav>
+            <div class = "logo">
+                    <a href='./index.html'>
+                        <img src = './logo.jpg'>
+                    </a>
+                    
             </div>
-            <?php endwhile; ?>
-        </div>    
-        <div class="bottoms">
-            <h2>Bottoms</h2>
-        </div>
-        <div class="accessories">
-            <h2>Accessories</h2>
-        </div>
-    </section>
-        <!-- <section id="about-us">
+            <ul>
+                <li><a href="./index.php">HOME</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING
+                    <!-- <i class="fa fa-caret-down"></i> -->
+                    </button>
+                    <div class="dropdown-content">
+                    <a href="#">Tops</a>
+                    <a href="#">Bottoms</a>
+                    </div>
+                </div> 
+                <li><a href="#sale">SALE</a></li>
+                <li><a class="left" href="#about-us">ABOUT US</a></li>
+                <li><a class="left" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a class="left" href="./profile.php"><i class="fa-solid fa-user"></i></a></li>
+                <a href ="logout.php">logout</a>
+            </ul>
+  
+        </nav>
+
+        <section id="home"></section>
+        <section id="about-us">
         </section>
         <section id="sale"></section> -->
 </body>
