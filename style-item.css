@@ -1,0 +1,38 @@
+.item-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.item-view {
+    padding: 80px 0;
+}
+
+.item-view-name, .item-view-price, .item-view-colour, .item-view-size, .item-view-size-info {
+    font-family: 'Lucida Sans', sans-serif;
+    font-weight: 400;
+    font-size: large;
+}
+
+/* .item-view-colour-blob {
+
+} */
+
+.add-btn {
+    width: 20vw;
+    padding: 20px;
+    background-color: lightsalmon;
+    border: none;
+}
+
+.add-btn:hover {
+    width: 20vw;
+    padding: 20px;
+    background-color: lightsalmon;
+    border: 2px solid black;
+}
+
+.product-details-title, .shipping-returns-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
