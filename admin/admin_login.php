@@ -13,11 +13,11 @@ if(isset($_POST['submit'])){
     $filter_pass = filter_var(md5($_POST['pass']), FILTER_SANITIZE_STRING);
     $pass = mysqli_real_escape_string($conn, $filter_pass);
  
-    $select= mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+    $select= mysqli_query($conn, "SELECT * FROM `admin` WHERE Email = '$email' AND Password = '$pass'") or die('query failed');
 
     if(mysqli_num_rows($select) > 0){
         $row = mysqli_fetch_assoc($select);
-        $_SESSION['admin_id'] = $row['id'];
+        $_SESSION['admin_id'] = $row['ID'];
         header('location:dashboard.php');
      }else{
         $message[] = 'Incorrect username or password!';

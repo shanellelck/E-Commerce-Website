@@ -5,7 +5,7 @@ include 'connection.php';
 if(isset($_POST['submit'])){
 
    
-    $filter_name = filter_var($$_POST['name'], FILTER_SANITIZE_STRING);
+    $filter_name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $name = mysqli_real_escape_string($conn, $filter_name);
     
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $filter_cpass = filter_var(md5($_POST['cpass']), FILTER_SANITIZE_STRING);
     $cpass = mysqli_real_escape_string($conn, $filter_cpass);
 
-    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE email = '$email'") or die('query failed');
+    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$email'") or die('query failed');
 
     if(mysqli_num_rows($select) > 0){
         $message[] = 'user email already exist!';
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
         if($pass != $cpass){
             $message[] = 'password not matched!';
         }else{
-            mysqli_query($conn, "INSERT INTO `customer`(`name`, `email`, `password`) VALUES ('$name','$email','$pass')")
+            mysqli_query($conn, "INSERT INTO `customer`(`Name`, `Email`, `Password`) VALUES ('$name','$email','$pass')")
             or die('query failed');
             
             $message[] = 'registered successful!';
