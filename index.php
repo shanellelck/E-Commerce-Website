@@ -9,7 +9,7 @@ $user_id = $_SESSION['user_id'];
 
 if(!isset($user_id)){
     header('location:login.php');
-}
+};
 
 ?>
 
@@ -37,8 +37,8 @@ if(!isset($user_id)){
                     <!-- <i class="fa fa-caret-down"></i> -->
                     </button>
                     <div class="dropdown-content">
-                    <a href="#">Tops</a>
-                    <a href="#">Bottoms</a>
+                    <a href="category.php?category=tops">Tops</a>
+                    <a href="category.php?category=bottoms">Bottoms</a>
                     </div>
                 </div> 
                 <li><a href="#sale">SALE</a></li>
