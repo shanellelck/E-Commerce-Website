@@ -44,7 +44,7 @@
                     </div>
                     </div>
             </td>
-            <td><input type ="number" value = "1"></td>
+            <td><input type ="number" value = "1" min = '1'></td>
             <td>$<?= $item['Price'];?></td>
         </tr>     
         <?php endwhile; ?>
