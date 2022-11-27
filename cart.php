@@ -13,9 +13,9 @@
     // $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item WHERE Customer_ID ='$user_id';";  // and join with item table too
     $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
     $items_in_cart = $conn->query($SELECT_ITEMS_IN_CART);
-    // $TOTAL = "SELECT SUM(Price) FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
-    // $total_in_cart = $conn->query($TOTAL);
-    // $tot = mysqli_fetch_assoc($total_in_cart);
+    $TOTAL = "SELECT SUM(Price) FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
+    $total_in_cart = $conn->query($TOTAL);
+    $tot = mysqli_fetch_array($total_in_cart);
 ?>
 
 <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
@@ -51,17 +51,19 @@
     </table>
     <div class = "total-price">
         <table>
+            <?php $raw_total = $tot[0] ?>
+            <?php $tax = $raw_total * 0.05 ?>
             <tr>
                 <td>Subtotal</td>
-                <td>$ </td>
+                <td>$<?= $raw_total ?></td>
             </tr>
             <tr>
                 <td>Tax</td>
-                <td>$20 </td>
+                <td>$<?= $tax?></td>
             </tr>
             <tr>
                 <td>Total</td>
-                <td>$120 </td>
+                <td>$<?= $raw_total + $tax ?></td>
             </tr>
         </table>
 </div>
