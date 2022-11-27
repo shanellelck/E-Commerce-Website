@@ -1,21 +1,6 @@
 <?php include "header.php" ?>
-
+<?php include "connection.php" ?>
 <?php
-    // Create connection
-    $servername = "localhost";
-    $database = "ecommerce_db";
-    $username = "root";
-    $password = "";
-
-    // Create connection
-
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Check connection
-
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-
     session_start();    
 
     $user_id = $_SESSION['user_id'];
@@ -52,7 +37,7 @@
                 <!-- add an option for customer to choose quantity -->
                 <?php 
                     if (isset($_POST['btn-add-to-cart'])) {
-                        $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', 'TEST01234', '1');";
+                        $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', '$user_id', '1');";
                         // mysqli_query($conn, $ADD_TO_CART);
                         if ($conn->query($ADD_TO_CART) === TRUE) {
                             echo "New record created successfully";

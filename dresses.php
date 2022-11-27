@@ -10,18 +10,18 @@
         header('location:login.php');
     };
 
-        $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-        $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
+        $SELECT_DRESSES = "SELECT * FROM item WHERE Category_ID ='DRESSES';";
+        $dresses = $conn->query($SELECT_DRESSES);
 ?>
 
 
 <body>
     <section id="new-arrivals">
-        <h1>New Arrivals</h1>
+        <h1>Dresses</h1>
         <div class="tops">
             <h2>Tops</h2>
             <?php 
-                while($item = mysqli_fetch_assoc($new_arrivals)):
+                while($item = mysqli_fetch_assoc($dresses)):
             ?>
             <div class="item">
                 <?php $item_id = $item['Item_ID'] ?>
@@ -34,12 +34,6 @@
             </div>
             <?php endwhile; ?>
         </div>    
-        <div class="bottoms">
-            <h2>Bottoms</h2>
-        </div>
-        <div class="accessories">
-            <h2>Accessories</h2>
-        </div>
     </section>
         <!-- <section id="about-us">
         </section>

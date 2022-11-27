@@ -23,6 +23,7 @@
                     <div class="dropdown-content">
                     <a href="#">Tops</a>
                     <a href="#">Bottoms</a>
+                    <a href="./dresses.php">Dresses</a>
                     </div>
                 </div> 
                 <a href="#sale">SALE</a>

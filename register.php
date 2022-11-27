@@ -11,22 +11,22 @@ if(isset($_POST['submit'])){
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
     $email = mysqli_real_escape_string($conn, $filter_email);
     
-    $filter_pass = filter_var(md5($_POST['pass']), FILTER_SANITIZE_STRING);
+    $filter_pass = filter_var(($_POST['pass']), FILTER_SANITIZE_STRING);
     $pass = mysqli_real_escape_string($conn, $filter_pass);
     
-    $filter_cpass = filter_var(md5($_POST['cpass']), FILTER_SANITIZE_STRING);
+    $filter_cpass = filter_var(($_POST['cpass']), FILTER_SANITIZE_STRING);
     $cpass = mysqli_real_escape_string($conn, $filter_cpass);
 
-    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$email'") or die('query failed');
-
+    $select= mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email';") or die('query failed');
+   
     if(mysqli_num_rows($select) > 0){
         $message[] = 'user email already exist!';
     }else{ 
         if($pass != $cpass){
             $message[] = 'password not matched!';
         }else{
-            mysqli_query($conn, "INSERT INTO `customer`(`Name`, `Email`, `Password`) VALUES ('$name','$email','$pass')")
-            or die('query failed');
+            mysqli_query($conn, "INSERT INTO customer (Name, Email, Password) VALUES ('$name', '$email', '$pass');")
+            or die('register query failed');
             
             $message[] = 'registered successful!';
             header('location:login.php');
