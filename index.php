@@ -1,30 +1,19 @@
-<?php include "header.php" ?>
+
 
 <?php
 
-    //@include 'config.php';
+    include 'connection.php';
     
     // Create connection
-    $servername = "localhost";
-    $database = "ecommerce_db";
-    $username = "root";
-    $password = "";
-
-    // Create connection
-
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
     session_start();    
 
     $user_id = $_SESSION['user_id'];
 
     if(!isset($user_id)){
         header('location:login.php');
-    };
+    }
+    include "header.php" ;
+
 
         $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
         $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);

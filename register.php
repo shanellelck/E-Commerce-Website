@@ -11,10 +11,10 @@ if(isset($_POST['submit'])){
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
     $email = mysqli_real_escape_string($conn, $filter_email);
     
-    $filter_pass = filter_var(md5($_POST['pass']), FILTER_SANITIZE_STRING);
+    $filter_pass = filter_var($_POST['pass'], FILTER_SANITIZE_STRING);
     $pass = mysqli_real_escape_string($conn, $filter_pass);
     
-    $filter_cpass = filter_var(md5($_POST['cpass']), FILTER_SANITIZE_STRING);
+    $filter_cpass = filter_var($_POST['cpass'], FILTER_SANITIZE_STRING);
     $cpass = mysqli_real_escape_string($conn, $filter_cpass);
 
     $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$email'") or die('query failed');
