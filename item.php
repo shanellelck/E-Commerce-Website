@@ -40,7 +40,7 @@
                         $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', '$user_id', '1');";
                         // mysqli_query($conn, $ADD_TO_CART);
                         if ($conn->query($ADD_TO_CART) === TRUE) {
-                            echo "New record created successfully";
+                            echo "Item added to cart successfully";
                           } else {
                             echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
                           }
