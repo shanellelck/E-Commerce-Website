@@ -10,7 +10,7 @@
     };
 
     $item_id = $_GET['item_id'];
-    // echo $item_id;
+    // echo $user_id;
     $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Item_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
@@ -37,14 +37,31 @@
                 <!-- add an option for customer to choose quantity -->
                 <?php 
                     if (isset($_POST['btn-add-to-cart'])) {
-                        $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', '$user_id', '1');";
+                        $FIND_IN_CART = "SELECT * FROM CART_CONTAINS_ITEM WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";  // check if item added is already in the cart, then just update quantity
+                        $item_price = $item['Price'];
+                        $UPDATE_FINAL_CART = "UPDATE CART SET Total_Price=Total_Price+$item_price, Total_Number_Of_Item=Total_Number_Of_Item+1 WHERE Customer_ID = '$user_id';";
+                        $item_in_cart = $conn->query($FIND_IN_CART);
+                        if (mysqli_fetch_array($item_in_cart)) {
+                            $UPDATE_CART  = "UPDATE cart_contains_item SET Quantity=Quantity+1 WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";
+                            if ($conn->query($UPDATE_CART)  && $conn->query($UPDATE_FINAL_CART) == TRUE) {
+                                echo "Item added to cart successfully!";
+                              } else {
+                                echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
+                              }
+                        } else {
+                            $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', '$user_id', '1');";
+                            $item_price = $item['Price'];
+                            $CREATE_FINAL_CART = "INSERT INTO CART VALUES ('$user_id', '$item_price', '1');";
+                            $UPDATE_FINAL_CART = "UPDATE CART SET Total_Price=Total_Price+$item_price, Total_Number_Of_Item=Total_Number_Of_Item+1 WHERE Customer_ID = '$user_id';";
+                            if ($conn->query($ADD_TO_CART) && ($conn->query($CREATE_FINAL_CART) || $conn->query($UPDATE_FINAL_CART))) {
+                                echo "Item added to cart successfully!";
+                              } else {
+                                echo "Error 2: " . $ADD_TO_CART . "<br>" . $conn->error;
+                              }
+                        }
+                    }    
                         // mysqli_query($conn, $ADD_TO_CART);
-                        if ($conn->query($ADD_TO_CART) === TRUE) {
-                            echo "Item added to cart successfully";
-                          } else {
-                            echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
-                          }
-                    }
+                        
                 ?>
                 <form method="post">
                     <input type="submit" name="btn-add-to-cart" value="Add to Cart" class="add-btn">

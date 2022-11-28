@@ -13,9 +13,13 @@
     // $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item WHERE Customer_ID ='$user_id';";  // and join with item table too
     $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
     $items_in_cart = $conn->query($SELECT_ITEMS_IN_CART);
-    $TOTAL = "SELECT SUM(Price) FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
-    $total_in_cart = $conn->query($TOTAL);
-    $tot = mysqli_fetch_array($total_in_cart);
+    // $TOTAL = "SELECT SUM(Price) FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
+    // $total_in_cart = $conn->query($TOTAL);
+    // $tot = mysqli_fetch_array($total_in_cart);
+
+    // part below is pulling from CART table for information about 'total'
+    $SELECT_FINAL_CART = "SELECT * FROM cart AS C WHERE C.Customer_ID ='$user_id';"; 
+    $items_in_final_cart = mysqli_fetch_assoc($conn->query($SELECT_FINAL_CART));
 ?>
 
 <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
@@ -45,17 +49,17 @@
                     </div>
             </td>
             <td><input type ="number" value = "1" min = '1'></td>
-            <td>$<?= $item['Price'];?></td>
+            <td>$<?= $item['Price'] * $item['Quantity'];?></td>
         </tr>     
         <?php endwhile; ?>
     </table>
     <div class = "total-price">
         <table>
-            <?php $raw_total = $tot[0] ?>
-            <?php $tax = $raw_total * 0.05 ?>
+            <?php $items_in_final_cart['Total_Price'] ?>
+            <?php $tax = $items_in_final_cart['Total_Price'] * 0.05 ?>
             <tr>
                 <td>Subtotal</td>
-                <td>$<?= $raw_total ?></td>
+                <td>$<?= $items_in_final_cart['Total_Price'] ?></td>
             </tr>
             <tr>
                 <td>Tax</td>
@@ -63,7 +67,7 @@
             </tr>
             <tr>
                 <td>Total</td>
-                <td>$<?= $raw_total + $tax ?></td>
+                <td>$<?= $items_in_final_cart['Total_Price'] + $tax ?></td>
             </tr>
         </table>
 </div>
