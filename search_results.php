@@ -13,21 +13,23 @@
     $search_word = $_GET['search_word'];
     // echo $search_word;
     // $SELECT_WHERE_WORDS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-    $SELECT_WHERE_WORDS = "SELECT * FROM `item` WHERE description LIKE '%$search_word%'";
-    
-    $find_words = $conn->query($SELECT_WHERE_WORDS);
+    $SELECT_WHERE_TYPE = "SELECT * FROM `item` WHERE description LIKE '%$search_word%'";
+    $SELECT_WHERE_COLOUR ="SELECT * FROM `item` WHERE colour LIKE '%$search_word%'";
+    $find_types = $conn->query($SELECT_WHERE_TYPE);
+    $find_colours = $conn->query($SELECT_WHERE_COLOUR);
 
-    if(mysqli_num_rows($find_words) < 0) {
-        echo "Sorry, no matches found...";
-    }
 ?>
 
 <body>
     <section id="new-arrivals">
-        <h1>New Arrivals</h1>
+        <?php if((mysqli_num_rows($find_types) > 0) || (mysqli_num_rows($find_colours) > 0)): ?>
+            <h1>Search results matching: '<?= $search_word ?>'</h1>
+        <?php else: ?>
+            <h1>Sorry, no matches found for '<?= $search_word ?>'</h1>
+        <?php endif; ?>
         <div class="search-results">
             <?php 
-                while($item = mysqli_fetch_assoc($find_words)):
+                while(($item = mysqli_fetch_assoc($find_types)) || ($item = mysqli_fetch_assoc($find_colours))):
             ?>
             <div class="item">
                 <?php $item_id = $item['Item_ID'] ?>
