@@ -1,21 +1,6 @@
 <?php include "header.php" ?>
-
+<?php include "connection.php" ?>
 <?php
-    // Create connection
-    $servername = "localhost";
-    $database = "ecommerce_db";
-    $username = "root";
-    $password = "";
-
-    // Create connection
-
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Check connection
-
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-
     session_start();    
 
     $user_id = $_SESSION['user_id'];
@@ -25,7 +10,7 @@
     };
 
     $item_id = $_GET['item_id'];
-    // echo $item_id;
+    
     $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Item_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
@@ -52,14 +37,30 @@
                 <!-- add an option for customer to choose quantity -->
                 <?php 
                     if (isset($_POST['btn-add-to-cart'])) {
-                        $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', 'TEST01234', '1');";
-                        // mysqli_query($conn, $ADD_TO_CART);
-                        if ($conn->query($ADD_TO_CART) === TRUE) {
-                            echo "New record created successfully";
-                          } else {
-                            echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
-                          }
-                    }
+                        $FIND_IN_CART = "SELECT * FROM CART_CONTAINS_ITEM WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";  // check if item added is already in the cart, then just update quantity
+                        $item_price = $item['Price'];
+                        $UPDATE_FINAL_CART = "UPDATE CART SET Total_Price=Total_Price+$item_price, Total_Number_Of_Item=Total_Number_Of_Item+1 WHERE Customer_ID = '$user_id';";
+                        $item_in_cart = $conn->query($FIND_IN_CART);
+                        if (mysqli_fetch_array($item_in_cart)) {
+                            $UPDATE_CART  = "UPDATE cart_contains_item SET Quantity=Quantity+1 WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";
+                            if ($conn->query($UPDATE_CART)  && $conn->query($UPDATE_FINAL_CART) == TRUE) {
+                                echo "Item added to cart successfully!";
+                              } else {
+                                echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
+                              }
+                        } else {
+                            $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$item_id', '$user_id', '1');";
+                            $item_price = $item['Price'];
+                            $CREATE_FINAL_CART = "INSERT INTO CART VALUES ('$user_id', '$item_price', '1');";
+                            $UPDATE_FINAL_CART = "UPDATE CART SET Total_Price=Total_Price+$item_price, Total_Number_Of_Item=Total_Number_Of_Item+1 WHERE Customer_ID = '$user_id';";
+                            if ($conn->query($ADD_TO_CART) && ($conn->query($CREATE_FINAL_CART) || $conn->query($UPDATE_FINAL_CART))) {
+                                echo "Item added to cart successfully!";
+                              } else {
+                                echo "Error 2: " . $ADD_TO_CART . "<br>" . $conn->error;
+                              }
+                        }
+                    }    
+                        
                 ?>
                 <form method="post">
                     <input type="submit" name="btn-add-to-cart" value="Add to Cart" class="add-btn">
@@ -73,4 +74,14 @@
             </div>
             <?php endwhile; ?>
        </div>
+       <?php if ($_SESSION['user_type'] == 'admin'): ?>
+       <div class="admin-btn">
+            <form method="post">
+                <input type="submit" name="btn-update" value="Update" class="update-btn">
+            </form>
+            <form method="post">
+                <input type="submit" name="btn-remove" value="Remove" class="remove-btn">
+            </form>
+       </div>
+       <?php endif; ?>
 </body>

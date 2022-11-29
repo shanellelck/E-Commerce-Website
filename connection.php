@@ -1,6 +1,6 @@
 <?php
     $servername = 'localhost';
-    $database = 'ecommerce_db';
+    $database = 'shop_db';
     $username = 'root';
     $password = '';
 

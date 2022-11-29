@@ -12,18 +12,25 @@ if(isset($_POST['submit'])){
     $filter_pass = filter_var($_POST['pass'], FILTER_SANITIZE_STRING);
     $pass = mysqli_real_escape_string($conn, $filter_pass);
  
-    $select= mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$email' AND Password = '$pass'") or die('query failed');
+    // $select_customer = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email' AND Password = '$pass';") or die('query failed');
+    $select_customer = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email' AND Password = '$pass';");
+    $select_admin = mysqli_query($conn, "SELECT * FROM admin WHERE Email_Address = '$email' AND Password = '$pass';");
 
-    if(mysqli_num_rows($select) > 0){
-        $row = mysqli_fetch_assoc($select);
+    if(mysqli_num_rows($select_customer) > 0){
+        $row = mysqli_fetch_assoc($select_customer);
         $_SESSION['user_id'] = $row['ID'];
-        $_SESSION['user_name'] = $row['Name'];
-        $_SESSION['user_email'] = $row['Email'];
+        $_SESSION['user_type'] = 'customer';
         header('location:index.php');
-     }else{
+     } else if (mysqli_num_rows($select_admin) > 0){
+        $row = mysqli_fetch_assoc($select_admin);
+        $_SESSION['user_id'] = $row['ID'];
+        $_SESSION['user_type'] = 'admin';
+        header('location:index.php');
+     }
+     else{
         $message[] = 'Incorrect username or password!';
     }
-
+    
 }
 
 ?>
