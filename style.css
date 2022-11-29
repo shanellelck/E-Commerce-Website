@@ -19,6 +19,7 @@ body {
 }
 
 #search {
+    height: 30px;
     padding: 0 30px;
     width: 40vw;
     border-radius: 20px;
@@ -99,7 +100,7 @@ h1 {
     text-align: center;
 }
 
-.tops, .bottoms, .dresses, .accessories {
+.tops, .bottoms, .dresses, .accessories, .search-results {
     width: 100%;
     display: flex;
     flex-wrap: wrap;

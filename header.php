@@ -14,7 +14,15 @@
                 <a href='./index.php' class="logo">
                     <img id="logo" src = './logo.jpg'>
                 </a>   
-                <input type="text" id="search" placeholder="Search...">
+                <?php 
+                    if (isset($_POST['search-bar'])) {
+                        $search_word = $_POST['search-bar'];
+                        header("location:search_results.php?search_word=".$search_word);
+                    }
+                ?>
+                <form method="post">
+                    <input type="text" id="search" name="search-bar" placeholder="Search...">
+                </form>
                 <a class="right" id="home" href="./index.php">HOME</a>
                 <div class="right dropdown">
                     <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING
