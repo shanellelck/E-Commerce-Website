@@ -19,7 +19,7 @@
     <section id="new-arrivals">
         <h1>Dresses</h1>
         <div class="tops">
-            <h2>Tops</h2>
+            
             <?php 
                 while($item = mysqli_fetch_assoc($dresses)):
             ?>
@@ -35,9 +35,6 @@
             <?php endwhile; ?>
         </div>    
     </section>
-        <!-- <section id="about-us">
-        </section>
-        <section id="sale"></section> -->
 </body>
 <footer>
 <a>About Us</a>

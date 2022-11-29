@@ -15,10 +15,9 @@
                     <img id="logo" src = './logo.jpg'>
                 </a>   
                 <input type="text" id="search" placeholder="Search...">
-                <a id="home" href="./index.php">HOME</a>
-                <div class="dropdown">
+                <a class="right" id="home" href="./index.php">HOME</a>
+                <div class="right dropdown">
                     <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING
-                    <!-- <i class="fa fa-caret-down"></i> -->
                     </button>
                     <div class="dropdown-content">
                     <a href="#">Tops</a>
@@ -26,22 +25,12 @@
                     <a href="./dresses.php">Dresses</a>
                     </div>
                 </div> 
-                <a href="#sale">SALE</a>
-                <a class="left" href="#about-us">ABOUT US</a>
-                <a class="left" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a class="left" href="./profile.php"><i class="fa-solid fa-user"></i></a>
-                <a href ="logout.php">logout</a>
+                <a class="right" href="#sale">SALE</a>
+                <a class="right" href="#about-us">ABOUT US</a>
+                <a class="right" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a class="right" href="./profile.php"><i class="fa-solid fa-user"></i></a>
+                <a class="right" href ="logout.php">logout</a>
             </div>
-            
-            <!-- <ul>
-                <li><a href="./index.php">HOME</a></li>
-                
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul> -->
-  
         </nav>
     </header>
 </html>

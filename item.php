@@ -10,7 +10,7 @@
     };
 
     $item_id = $_GET['item_id'];
-    // echo $user_id;
+    
     $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Item_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
@@ -60,7 +60,6 @@
                               }
                         }
                     }    
-                        // mysqli_query($conn, $ADD_TO_CART);
                         
                 ?>
                 <form method="post">
@@ -75,4 +74,14 @@
             </div>
             <?php endwhile; ?>
        </div>
+       <?php if ($_SESSION['user_type'] == 'admin'): ?>
+       <div class="admin-btn">
+            <form method="post">
+                <input type="submit" name="btn-update" value="Update" class="update-btn">
+            </form>
+            <form method="post">
+                <input type="submit" name="btn-remove" value="Remove" class="remove-btn">
+            </form>
+       </div>
+       <?php endif; ?>
 </body>

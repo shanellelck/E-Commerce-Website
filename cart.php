@@ -48,7 +48,8 @@
                     </div>
                     </div>
             </td>
-            <td><input type ="number" value = "1" min = '1'></td>
+            <?php $item_quantity = $item['Quantity'] ?>
+            <td><input type ="number" value = <?= $item_quantity ?> min = '1' <?php $item['Quantity']?>></td>
             <td>$<?= $item['Price'] * $item['Quantity'];?></td>
         </tr>     
         <?php endwhile; ?>
