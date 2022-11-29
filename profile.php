@@ -46,8 +46,7 @@ if(isset($_SESSION['user_id'])){
         <p><i class ="fas fa-phone"></i><span><?php if($fetch_profile['Phone_Num'] == ''){echo 'Please enter your phone number!';}
         else{echo $fetch_profile['Phone_Num'];};?></span></p>
         <a href ="update_profile.php" class="btn">update info</a>
-        <p><i class="fas fa-map-marker-alt"></i><span><?php if($fetch_profile['Street_Num'] || $fetch_profile['Street_Name']
-        || $fetch_profile['City'] || $fetch_profile['Province'] || $fetch_profile['Postal_Code'] || $fetch_profile['Country'] == ''){echo 'Please enter your address!';}
+        <p><i class="fas fa-map-marker-alt"></i><span><?php if($fetch_profile['Street_Num'] == ''){echo 'Please enter your address!';}
         else{echo $fetch_profile['Street_Num']. ' ' .$fetch_profile['Street_Name']. ' ' .
         $fetch_profile['City']. ' ' .$fetch_profile['Province']. ' ' .$fetch_profile['Postal_Code']. ' ' .$fetch_profile['Country'];};?></span></p>
         <a href="update_address.php" class="btn"> update address</a>
