@@ -35,7 +35,7 @@
    
 
    
-      $select_itemID = mysqli_query($conn, "SELECT Item_ID FROM `item` WHERE Item_ID = '$ID'") or die('query failed');
+      $select_itemID = mysqli_query($conn, "SELECT Item_ID FROM `item` WHERE Item_ID = '$id'") or die('query failed');
    
       if(mysqli_num_rows($select_itemID) > 0){
           $message[] = 'Item ID already exist!';
