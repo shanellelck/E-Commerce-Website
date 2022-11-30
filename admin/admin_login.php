@@ -18,6 +18,8 @@ if(isset($_POST['submit'])){
     if(mysqli_num_rows($select) > 0){
         $row = mysqli_fetch_assoc($select);
         $_SESSION['admin_id'] = $row['ID'];
+        $_SESSION['admin_email']=$row['Email'];
+        $_SESSION['admin_name'] = $row['Name'];
         header('location:dashboard.php');
      }else{
         $message[] = 'Incorrect username or password!';

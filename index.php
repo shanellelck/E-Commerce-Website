@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+
 <?php include "connection.php" ?>
 
 <?php
@@ -8,7 +8,9 @@
     $user_type = $_SESSION['user_type'];
     if(!isset($user_id)){
         header('location:login.php');
-    };
+    }
+    include "header.php" ;
+
 
         // $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
         $SELECT_NEW_ARRIVALS = "SELECT * FROM `item` ORDER BY Add_Date Desc LIMIT 10";
@@ -25,6 +27,9 @@
 
 
 <body>
+    <?php if ($_SESSION['user_type'] == 'admin'): ?>
+        <a href="add-item.php" class="btn"> add item</a>
+    <?php endif; ?>
     <section id="new-arrivals">
         <h1>New Arrivals</h1>
         <h2>Tops</h2>
