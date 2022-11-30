@@ -14,6 +14,9 @@
         $SELECT_NEW_ARRIVALS = "SELECT * FROM `item` ORDER BY Add_Date Desc LIMIT 10";
         $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
+        $SELECT_NEW_BOTTOMS = "SELECT * FROM `item` WHERE description LIKE '%pants%' OR '%shorts%'";
+        $new_bottoms = $conn->query($SELECT_NEW_BOTTOMS);
+
         $SELECT_NEW_DRESSES = "SELECT * FROM `item` WHERE Category_ID = 'DRESSES'";
         $new_dresses = $conn->query($SELECT_NEW_DRESSES);
 
@@ -42,7 +45,19 @@
         </div> 
         <h2>Bottoms</h2>   
         <div class="bottoms">
-            
+            <?php 
+                while($bottom = mysqli_fetch_assoc($new_bottoms)):
+            ?>
+            <div class="item">
+                <?php $bottom_id = $bottom['Item_ID'] ?>
+                <p class="item-name"><?= $bottom['Name'];?></p>
+                <img src="<?= $bottom['Image'];?>"/>
+                <p class="item-price">$<?= $bottom['Price'];?></p>
+                <a href="item.php?item_id=<?php echo $bottom_id ?>">
+                    <button type="button" class="btn">More</button>
+                </a>
+            </div>
+            <?php endwhile; ?>
         </div>
         <h2>Dresses</h2>
         <div class="dresses">
