@@ -27,11 +27,11 @@
       $description = mysqli_real_escape_string($conn, $_POST['item_details']);
       
  
-      $image = $_FILES['image']['name'];
+      $image = $_FILES["item_image"]["name"];
       $image = filter_var($image, FILTER_SANITIZE_STRING);
-      $image_size = $_FILES['image']['size'];
-      $image_tmp_name = $_FILES['image']['tmp_name'];
-      $image_folder = 'uploaded_img/'.$image;
+      $image_size = $_FILES["item_image"]["size"];
+      $image_tmp_name = $_FILES["item_image"]["tmp_name"];
+      $image_folder = "img/".$image;
    
 
    
@@ -41,16 +41,16 @@
           $message[] = 'Item ID already exist!';
       }else{
           $insert_item = mysqli_query($conn, "INSERT INTO `item` (Item_ID, Description, Price, Name, Colour, Size, Quantity, Category_ID, Admin_ID, Add_Date, Supplier_Email_Address, Image)
-          VALUES ('$id','$description','$price','$name','$colour', '$size','$quantity','$category','$admin_ID','$add_Date','$supplier','$image')") or die('query failed');
+          VALUES ('$id','$description','$price','$name','$colour', '$size','$quantity','$category','$admin_ID','$add_Date','$supplier','$image_folder')") or die('query failed');
       
-      if($insert_item){
-         if($image_size > 2000000){
-            $message[] = 'image size is too large!';
-            }else{
-            move_uploaded_file($image_tmp_name, $image_folder);
-            $message[] = 'product added successfully!';
+         if($insert_item){
+            if($image_size > 2000000){
+               $message[] = 'image size is too large!';
+               }else{
+               move_uploaded_file($image_tmp_name, $image_folder);
+               $message[] = 'product added successfully!';
+               }
             }
-         }
    
       }
    
