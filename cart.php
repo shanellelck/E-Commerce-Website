@@ -23,6 +23,9 @@
 ?>
 
 <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+<head>
+    <link rel="stylesheet" type="text/css" href="style-cart.css">
+</head>
 <div class ="small-container cart-page">
     <h2 style = "font-size: 40px;"> Shopping Cart</h2>
     <table>
@@ -44,9 +47,25 @@
                     <p class="item-name-cart"><?= $item['Name'];?></p>
                     <small class="item-price-cart">Price: $<?= $item['Price'];?></small>
                     <br>
-                    <a href = "">Remove</a>
+                    <?php 
+                        $button_name = $item['Item_ID'];
+                        if (isset($_POST[$button_name])) {
+                            $item_id = $item['Item_ID'];
+                            $item_quantity = $item['Quantity'];
+                            $item_price = $item['Price'];
+                            $REMOVE_FROM_CART = "DELETE FROM cart_contains_item WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";
+                            $UPDATE_CART = "UPDATE CART SET Total_Price=Total_Price-('$item_price'*'$item_quantity'), Total_Number_Of_Item=Total_Number_Of_Item-'$item_quantity' WHERE Customer_ID = '$user_id';";
+                            
+                            if (($conn->query($UPDATE_CART)) && ($conn->query($REMOVE_FROM_CART)) == TRUE) {
+                                header("location:cart.php");
+                            }
+                        }
+                    ?>
+                    <form method="post">
+                        <input type="submit" name="<?php echo $button_name; ?>" value="Remove" class="remove-btn">
+                    </form>
                     </div>
-                    </div>
+                </div>
             </td>
             <?php $item_quantity = $item['Quantity'] ?>
             <td><input type ="number" value = <?= $item_quantity ?> min = '1' <?php $item['Quantity']?>></td>

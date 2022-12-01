@@ -23,6 +23,7 @@
     padding: 20px;
     background-color: lightsalmon;
     border: none;
+    border: 2px solid white;
 }
 
 .add-btn:hover {

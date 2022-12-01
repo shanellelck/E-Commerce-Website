@@ -14,6 +14,8 @@
     $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Item_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
+    $SELECT_REVIEWS = "SELECT * FROM review WHERE Item_ID = '$item_id';";
+    $find_reviews = $conn->query($SELECT_REVIEWS);
     
 ?>
 
@@ -29,6 +31,10 @@
             <div class="item-view">
                 <p class="item-view-name"><?= $item['Name'];?></p>
                 <p class="item-view-price">$<?= $item['Price'];?></p>
+                <div class="review-line">
+                    <!-- include the stars here -->
+                    <a href="#review-section">Rating</a>
+                </div>
                 <p class="item-view-colour"><?= $item['Colour'];?></p>
                 <P class="item-view-colour-blob"></p>
                 <P class="item-view-size-info">Size:</p>
@@ -74,6 +80,26 @@
             </div>
             <?php endwhile; ?>
        </div>
+       <div class="recommended-items">
+            <!-- include sql statements here to find similar items -->
+       </div>
+       <div id="review-section" class="review-details">
+            <p>Reviews</p>
+            <div class="review-summary">
+                <div class="stars">
+                    <a href="#5stars"></a>
+                </div>
+                <form method="post">
+                    <input type="submit" name="btn-write" value="Write a Review" class="write-btn">
+                </form>
+            </div>
+            <?php 
+                while($review = mysqli_fetch_assoc($find_reviews)):
+            ?>
+            <p class="review-title"><?= $review['Title'] ?></p>
+            <p class="review-para"><?= $review['Comment'] ?></p>
+            <?php endwhile; ?>
+        </div>
        <?php if ($_SESSION['user_type'] == 'admin'): ?>
        <div class="admin-btn">
             <form method="post">
