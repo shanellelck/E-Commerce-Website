@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
  
     // $select_customer = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email' AND Password = '$pass';") or die('query failed');
     $select_customer = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email' AND Password = '$pass';");
-    $select_admin = mysqli_query($conn, "SELECT * FROM admin WHERE Email_Address = '$email' AND Password = '$pass';");
+    $select_admin = mysqli_query($conn, "SELECT * FROM admin WHERE Email = '$email' AND Password = '$pass';");
 
     if(mysqli_num_rows($select_customer) > 0){
         $row = mysqli_fetch_assoc($select_customer);
