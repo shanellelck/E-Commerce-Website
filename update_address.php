@@ -53,11 +53,10 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="style.css">
 
 
 </head>
@@ -84,7 +83,7 @@ if(isset($_POST['submit'])){
     <div class="box">
         <form action="" method="POST">
             <div class="flex">
-                <h1>Your address</h1>
+                <h3>Update Address</h1>
                 <div class="inputBox">
                 <input type="text" name = "street-num" placeholder="enter your street number" class="box">
                 <input type="text" name = "street-name" placeholder="enter your street name" class="box">

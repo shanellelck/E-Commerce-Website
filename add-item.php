@@ -64,7 +64,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Item</title>
+      <!-- custom css file link  -->
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php 
@@ -79,9 +81,9 @@
         }
     }
 ?>
-<section class="add-products">
+<section class="add-item">
 
-   <h1 class="title">add new item</h1>
+   <h1 class="title">Add new item</h1>
 
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
