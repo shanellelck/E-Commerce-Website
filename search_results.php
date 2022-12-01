@@ -13,8 +13,8 @@
     $search_word = $_GET['search_word'];
     // echo $search_word;
     // $SELECT_WHERE_WORDS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-    $SELECT_WHERE_TYPE = "SELECT * FROM `item` WHERE description LIKE '%$search_word%'";
-    $SELECT_WHERE_COLOUR ="SELECT * FROM `item` WHERE colour LIKE '%$search_word%'";
+    $SELECT_WHERE_TYPE = "SELECT * FROM `model` AS M, item AS I WHERE M.description LIKE '%$search_word%' AND I.Model_ID = M.Model_ID AND I.Size = 'S'";
+    $SELECT_WHERE_COLOUR ="SELECT * FROM `item` AS I, model AS M WHERE I.colour LIKE '%$search_word%' AND I.Model_ID = M.Model_ID AND I.Size = 'S'";
     $find_types = $conn->query($SELECT_WHERE_TYPE);
     $find_colours = $conn->query($SELECT_WHERE_COLOUR);
 
@@ -32,7 +32,7 @@
                 while(($item = mysqli_fetch_assoc($find_types)) || ($item = mysqli_fetch_assoc($find_colours))):
             ?>
             <div class="item">
-                <?php $item_id = $item['Item_ID'] ?>
+                <?php $item_id = $item['Model_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
                 <img src="<?= $item['Image'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>

@@ -18,6 +18,30 @@
 
 } */
 
+/* size style */ 
+.sizes {
+    display: flex;
+    flex-direction: row;
+}
+
+.available {
+    width: 20px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: lightsalmon;
+    text-align: center;
+}
+
+.not-available {
+    width: 20px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: grey;
+    text-align: center;
+}
+
 .add-btn {
     width: 20vw;
     padding: 20px;
@@ -26,8 +50,23 @@
     border: 2px solid white;
 }
 
-.add-btn:hover {
+.add-btn:hover{
     width: 20vw;
+    padding: 20px;
+    background-color: lightsalmon;
+    border: 2px solid black;
+}
+
+.update-btn, .remove-btn {
+    width: 10vw;
+    padding: 20px;
+    background-color: lightsalmon;
+    border: none;
+    border: 2px solid white;
+}
+
+.update-btn:hover, .remove-btn:hover {
+    width: 10vw;
     padding: 20px;
     background-color: lightsalmon;
     border: 2px solid black;
@@ -36,4 +75,9 @@
 .product-details-title, .shipping-returns-title {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+}
+
+.admin-btn {
+    display: flex;
+    flex-direction: row;
 }
