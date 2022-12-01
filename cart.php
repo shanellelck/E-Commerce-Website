@@ -11,7 +11,7 @@
     };
 
     // $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item WHERE Customer_ID ='$user_id';";  // and join with item table too
-    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
+    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I, model as M WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID AND I.Model_ID = M.Model_ID;";
     $items_in_cart = $conn->query($SELECT_ITEMS_IN_CART);
     // $TOTAL = "SELECT SUM(Price) FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
     // $total_in_cart = $conn->query($TOTAL);
@@ -31,6 +31,8 @@
     <table>
         <tr>
             <th>Product</th>
+            <th>Colour</th>
+            <th>Size</th>
             <th>Quantity</th>
             <th>Subtotal</th>
         </tr>   
@@ -43,7 +45,7 @@
                 <div class= "cart-info">
                     <img src="<?= $item['Image'];?>"/>
                     <div>
-                    <!-- <p> Blue Dress</p> -->
+                    
                     <p class="item-name-cart"><?= $item['Name'];?></p>
                     <small class="item-price-cart">Price: $<?= $item['Price'];?></small>
                     <br>
@@ -51,7 +53,7 @@
                         $button_name = $item['Item_ID'];
                         if (isset($_POST[$button_name])) {
                             $item_id = $item['Item_ID'];
-                            $item_quantity = $item['Quantity'];
+                            $item_quantity = $item['Quantity_In_Cart'];
                             $item_price = $item['Price'];
                             $REMOVE_FROM_CART = "DELETE FROM cart_contains_item WHERE Item_ID = '$item_id' AND Customer_ID = '$user_id';";
                             $UPDATE_CART = "UPDATE CART SET Total_Price=Total_Price-('$item_price'*'$item_quantity'), Total_Number_Of_Item=Total_Number_Of_Item-'$item_quantity' WHERE Customer_ID = '$user_id';";
@@ -67,9 +69,14 @@
                     </div>
                 </div>
             </td>
-            <?php $item_quantity = $item['Quantity'] ?>
-            <td><input type ="number" value = <?= $item_quantity ?> min = '1' <?php $item['Quantity']?>></td>
-            <td>$<?= $item['Price'] * $item['Quantity'];?></td>
+            <?php $item_colour = $item['Colour'];
+                  $item_size = $item['Size'];
+                  $item_quantity = $item['Quantity_In_Cart'];
+                  $quantity_avail = $item['Quantity'] ?>
+            <td>Colour: <?= $item_colour?></td>
+            <td>Size: <?= $item_size?></td>
+            <td><input type ="number" value = <?= $item_quantity ?> min = '1' <?= $quantity_avail ?>></td>
+            <td>$<?= $item['Price'] * $item['Quantity_In_Cart'];?></td>
         </tr>     
         <?php endwhile; ?>
     </table>

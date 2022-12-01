@@ -13,13 +13,13 @@
 
 
         // $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-        $SELECT_NEW_ARRIVALS = "SELECT * FROM `item` ORDER BY Add_Date Desc LIMIT 10";
+        $SELECT_NEW_ARRIVALS = "SELECT * FROM `model` ORDER BY Add_Date Desc LIMIT 10";
         $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
-        $SELECT_NEW_BOTTOMS = "SELECT * FROM `item` WHERE description LIKE '%pants%' OR '%shorts%'";
+        $SELECT_NEW_BOTTOMS = "SELECT * FROM `model` WHERE description LIKE '%pants%' OR '%shorts%'";
         $new_bottoms = $conn->query($SELECT_NEW_BOTTOMS);
 
-        $SELECT_NEW_DRESSES = "SELECT * FROM `item` WHERE Category_ID = 'DRESSES'";
+        $SELECT_NEW_DRESSES = "SELECT * FROM `model` WHERE Category_ID = 'DRESSES'";
         $new_dresses = $conn->query($SELECT_NEW_DRESSES);
 
 
@@ -28,6 +28,9 @@
 
 <body>
     <?php if ($_SESSION['user_type'] == 'admin'): ?>
+        <div class="admin-nav">
+            
+        </div>
         <a href="add-item.php" class="btn"> add item</a>
     <?php endif; ?>
     <section id="new-arrivals">
@@ -38,7 +41,7 @@
                 while($item = mysqli_fetch_assoc($new_arrivals)):
             ?>
             <div class="item">
-                <?php $item_id = $item['Item_ID'] ?>
+                <?php $item_id = $item['Model_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
                 <img src="<?= $item['Image'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
