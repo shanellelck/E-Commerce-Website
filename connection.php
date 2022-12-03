@@ -1,6 +1,6 @@
 <?php
     $servername = 'localhost';
-    $database = 'shop_db';
+    $database = 'shop2';
     $username = 'root';
     $password = '';
 
