@@ -72,9 +72,14 @@
                     <td style="text-align: center">$<?= $tax?></td>
                 </tr>
                 <tr>
+                    <td>Delivery Fees</td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $delivery_cost?></td>
+                </tr>
+                <tr>
                     <td>Total</td>
                     <td></td>
-                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] + $tax ?></td>
+                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] + $tax + $delivery_cost?></td>
                 </tr>
             </tfoot>
         </table>
@@ -113,10 +118,10 @@
                 <form method="POST">
                     <h2>Delivery Options</h2>
                     <div>
-                        <input type = "radio" name = "delivery_method" value = "pickup">Pick-up
+                        <input type = "radio" name = "delivery_method" value = "Pick-up">Pick-up
                     </div>
                     <div>
-                        <input type = "radio" name = "delivery_method" value = "shipping">Shipping
+                        <input type = "radio" name = "delivery_method" value = "Shipping">Shipping
                     </div>
                         <button type = "submit" name = "confirm_delivery" class = "btn btn-dark my-5">Confirm</button>
                 </form>
@@ -144,8 +149,8 @@
                         $fetch_profile = mysqli_fetch_assoc($select_user);
                     }
 
-                    $shipping = "shipping";
-                    $pickup = "pickup";
+                    $shipping = "Shipping";
+                    $pickup = "Pick-up";
                     $clicked_delivery = $_POST['delivery_method'];
                     if($clicked_delivery == $shipping){
                         $delivery_cost = "5";

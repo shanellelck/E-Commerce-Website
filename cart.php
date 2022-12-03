@@ -73,6 +73,7 @@
         </tr>     
         <?php endwhile; ?>
     </table>
+    <br>
     <div class = "total-price">
         <table>
             <?php $items_in_final_cart['Total_Price'] ?>

@@ -118,7 +118,12 @@
             <div class = "flex-box">
                 <h2>Your order has been placed!</h2>
                 
-                <?php echo "Order Reference Number: $order_id";?>
+                <?php echo "Order Reference Number: $order_id";
+                
+                $empty_cart_contains_item = mysqli_query($conn,"DELETE  FROM cart_contains_item WHERE  Customer_ID = '$user_id';");
+                $empty_cart = mysqli_query($conn,"DELETE  FROM cart WHERE  Customer_ID = '$user_id';");
+                
+                ?>
             </div>  
         </div>
     </div>
