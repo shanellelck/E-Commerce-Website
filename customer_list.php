@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style-list.css">
+
 </head>
 <body>
 <?php 
@@ -28,7 +30,7 @@
   
     <div class ="small-container customer-page" style = "margin: 80px auto">
     <h1 class="title">Customers</h1>
-    <table align = "center">
+    <table>
         <tr>
             <th>ID</th>
             <th>Email Address</th>
@@ -62,36 +64,7 @@
                 $customer['City']. ', ' .$customer['Province']. ', ' .$customer['Postal_Code']. ', ' .$customer['Country'];
             }
             ?>
-            <style>
-            table, th, td {
-                border: 3px solid black;
-                text-align: center;
-                align :center;
-                
-            }
-            table{
-                width: 100%;
-                border-collapse: collapse;
-                table-layout: fixed;
-                
-                flex-wrap: wrap;
-            }
-            th{
-                font-size: 23px;
-                padding: 6px;
-                color:#fff;
-                background: #000000;
-                font-weight: 900;
-   
-            }
-            td{
-                font-size: 20px;
-                padding: 10px 5px;
-  
-                
-            }
-
-            </style>
+           
             <td> <?= $id?></td>
             <td> <?= $email?></td>
             <td> <?= $name?></td>

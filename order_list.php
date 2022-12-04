@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style-list.css">
+
 </head>
 <body>
 <?php 
@@ -34,7 +36,7 @@
             <th>Order Date</th>
             <th>Status</th>
             <th>Delivery Method</th>
-            <th style="text-align: center">Customer ID</th>
+            <th>Customer ID</th>
             <th style="text-align: center">Details</th>
         </tr>   
         
@@ -50,44 +52,7 @@
             $delivery_method = $order['Delivery_Method']; 
             $customer_id = $order['Customer_ID']; 
             ?>
-            <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-            <style>
-            table, th, td {
-                border: 3px solid black;
-                text-align: center;
-                align :center;
-                
-            }
-            table{
-                width: 100%;
-                border-collapse: collapse;
-                table-layout: fixed;
-                text-align: center;
-                
-                flex-wrap: wrap;
-            }
-            th{
-                font-size: 23px;
-                padding: 6px;
-                color:#fff;
-                background: #000000;
-                font-weight: 900;
-                text-align: center;
-   
-            }
-            td{
-                font-size: 20px;
-                padding: 10px 5px;
-                text-align: center;
-  
-                
-            }
-
-            </style>
-            </style>
+           
             <td> <?= $order_id?></td>
             <td> <?= $order_date?></td>
             <td> <?= $order_status?></td>

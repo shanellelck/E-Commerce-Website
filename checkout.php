@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style-checkout.css">
+
 </head>
 <body>
 <?php 
@@ -28,18 +30,18 @@
     <h1 class="title">Checkout Page</h1>
     
     <div class ="small-container order-page">
-        <table display: flex style="width:auto" align = "right" >
+        <table  align = "right" >
             <tr>
-                <th  style="text-align: center">Product</th>
-                <th style="text-align: center">Quantity</th>
-                <th style="text-align: center">Subtotal</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
             </tr>   
             
             <?php 
                 while($item = mysqli_fetch_assoc($items_in_cart)):
             ?>   
             <tr>
-                <td style="text-align: center">
+                <td >
                     <div class= "order-info">
                         <img src="<?= $item['Image'];?>"/>
                         <div>
@@ -48,69 +50,43 @@
                     </div>
                 </td>
                 <?php $item_quantity = $item['Quantity'] ?>
-                <td style="text-align: center"><p class="item-quantity-cart"><?= $item['Quantity'];?></p></td>
+                <td ><p class="item-quantity-cart"><?= $item['Quantity'];?></p></td>
                 
-                <td  style="text-align: center">$<?= $item['Price'] * $item['Quantity'];?></td>
+                <td  >$<?= $item['Price'] * $item['Quantity'];?></td>
             </tr>     
             <?php endwhile; ?>
-            <tfoot>
+            
                 <tr>
-                    <th  style="text-align: center">Order Summary</th>
+                    <th >Order Summary</th>
                     <th>  </th>
                     <th>  </th>
                 </tr>
                 <?php $items_in_final_cart['Total_Price'] ?>
                 <?php $tax = $items_in_final_cart['Total_Price'] * 0.05 ?>
                 <tr>
-                    <td>Subtotal</td>
+                    <td style="text-align: left">Subtotal</td>
                     <td></td>
-                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] ?></td>
+                    <td >$<?= $items_in_final_cart['Total_Price'] ?></td>
                 </tr>
                 <tr>
-                    <td>Tax</td>
+                    <td style="text-align: left">Tax</td>
                     <td></td>
-                    <td style="text-align: center">$<?= $tax?></td>
+                    <td >$<?= $tax?></td>
                 </tr>
                 <tr>
-                    <td>Delivery Fees</td>
+                    <td style="text-align: left">Delivery Fees</td>
                     <td></td>
-                    <td style="text-align: center">$<?= $delivery_cost?></td>
+                    <td>$<?= $delivery_cost?></td>
                 </tr>
                 <tr>
-                    <td>Total</td>
+                    <td style="text-align: left">Total</td>
                     <td></td>
-                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] + $tax + $delivery_cost?></td>
+                    <td >$<?= $items_in_final_cart['Total_Price'] + $tax + $delivery_cost?></td>
                 </tr>
-            </tfoot>
+            
         </table>
 
-        <style type = "text/css">
-            {
-                margin:0;
-                padding:0;
-                box-sizing: border-box;
-
-            }
-            .flex-container{
-                width: auto;
-                height: auto;
-                display: flex;
-                flex-direction: column-reverse;
-                flex-wrap: wrap;
-                justify-content:center;
-            }
-            .flex-box{
-                width: auto;
-                height:auto;
-                font-size:20px;
-                text-align: center;
-                border-radius: 20px;
-                margin: 10px;
-                border: .2rem solid black;
-
-            }
-
-        </style>
+        
         
         <div class="flex-container">
         
@@ -125,22 +101,7 @@
                     </div>
                         <button type = "submit" name = "confirm_delivery" class = "btn btn-dark my-5">Confirm</button>
                 </form>
-                <style>
-                .anybutton {
-                
-                width:100px;
-                height:40px;
-                position: fixed;
-            
-                background: black; 
-                padding: 10px 20px;
-                border-radius: 4px;
-                bottom: 10px;
-                right: 20px;
-                color: white;
-                }
-                </style>
- 
+              
                 <?php 
                 if(isset($_POST['delivery_method']) )
                 {
