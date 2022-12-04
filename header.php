@@ -35,6 +35,11 @@
                 </div> 
                 <a class="right" href="#sale">SALE</a>
                 <a class="right" href="#about-us">ABOUT US</a>
+
+
+                <a class="right" href="./admin_main_page.php">Admin</a>
+
+
                 <a class="right" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                 <a class="right" href="./profile.php"><i class="fa-solid fa-user"></i></a>
                 <a class="right" href ="logout.php">logout</a>
