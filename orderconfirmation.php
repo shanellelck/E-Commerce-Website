@@ -25,7 +25,7 @@
         header('location:index.php');
     }
 
-    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
+    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID AND I.Model_ID = M.Model_ID;;";
     $items_in_cart = $conn->query($SELECT_ITEMS_IN_CART);
     $SELECT_FINAL_CART = "SELECT * FROM cart AS C WHERE C.Customer_ID ='$user_id';"; 
     $items_in_final_cart = mysqli_fetch_assoc($conn->query($SELECT_FINAL_CART));
@@ -53,9 +53,9 @@
                     </div>
                 </td>
                 <?php $item_quantity = $item['Quantity'] ?>
-                <td><p class="item-quantity-cart"><?= $item['Quantity'];?></p></td>
+                <td style="text-align: center"><p class="item-quantity-cart"><?= $item['Quantity_In_Cart'];?></p></td>
                 
-                <td>$<?= $item['Price'] * $item['Quantity'];?></td>
+                <td  style="text-align: center">$<?= $item['Price'] * $item['Quantity_In_Cart'];?></td>
             </tr>     
             <?php endwhile; ?>
             

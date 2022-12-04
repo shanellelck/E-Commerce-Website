@@ -22,7 +22,7 @@
         header('location:index.php');
     }
 
-    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID;";
+    $SELECT_ITEMS_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I, model as M WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID AND I.Model_ID = M.Model_ID;";
     $items_in_cart = $conn->query($SELECT_ITEMS_IN_CART);
     $SELECT_FINAL_CART = "SELECT * FROM cart AS C WHERE C.Customer_ID ='$user_id';"; 
     $items_in_final_cart = mysqli_fetch_assoc($conn->query($SELECT_FINAL_CART));
@@ -49,10 +49,10 @@
                         </div>
                     </div>
                 </td>
-                <?php $item_quantity = $item['Quantity'] ?>
-                <td ><p class="item-quantity-cart"><?= $item['Quantity'];?></p></td>
+                <?php $item_quantity = $item['Quantity_In_Cart'] ?>
+                <td style="text-align: center"><p class="item-quantity-cart"><?= $item['Quantity_In_Cart'];?></p></td>
                 
-                <td  >$<?= $item['Price'] * $item['Quantity'];?></td>
+                <td  style="text-align: center">$<?= $item['Price'] * $item['Quantity_In_Cart'];?></td>
             </tr>     
             <?php endwhile; ?>
             
@@ -76,7 +76,8 @@
                 <tr>
                     <td style="text-align: left">Delivery Fees</td>
                     <td></td>
-                    <td>$<?= $delivery_cost?></td>
+                    <?php $delivery_cost = 0?>
+                    <td style="text-align: center">$<?= $delivery_cost?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left">Total</td>
@@ -109,12 +110,13 @@
                     if(mysqli_num_rows($select_user) > 0){
                         $fetch_profile = mysqli_fetch_assoc($select_user);
                     }
-
+                    
                     $shipping = "Shipping";
                     $pickup = "Pick-up";
-                    $clicked_delivery = $_POST['delivery_method'];
-                    if($clicked_delivery == $shipping){
-                        $delivery_cost = "5";
+                    // $clicked_delivery = $_POST['delivery_method'];
+                    if(($_POST['delivery_method']) == $shipping){
+                        echo $_POST['delivery_method'];
+                        $delivery_cost = 5;
                         ?>
                     <h2>Shipping Address</h2>
                     <p><i class="fas fa-map-marker-alt"></i><span><?php if($fetch_profile['Street_Num'] == ''){echo 'Please enter your address!';}
@@ -123,12 +125,12 @@
                     <a href="update_address.php" class="btn"> update address</a>
                     <br>
                     <?php
-                    }else if ($clicked_delivery == $pickup){
+                    }else if (($_POST['delivery_method']) == $pickup){
                         ?>
                         <h2>Pick-up Address</h2>
                         <p><i class="fas fa-map-marker-alt"></i><span><?php echo " 3625 Shaganappi Trail NW, Calgary, AB T3A 0E2";?></span></p>
                         <?php
-                        $delivery_cost = "0";
+                        $delivery_cost = 0;
                     }
                    
                     $order_date = date("Y/m/d");
@@ -137,11 +139,11 @@
                     $fetch_order = mysqli_fetch_assoc($select_order);
                     $order_id = $fetch_order['Order_ID'];?>
                     
-                    <a href="payment.php?order_id=<?php echo $order_id ?>  & delivery_cost=<?php echo $delivery_cost ?>">
+                    <a href="payment.php?order_id=<?php echo $order_id ?>,delivery_cost=<?php echo $delivery_cost ?>">
                     <button type="button" class="btn">Proceed to Payment</button>
                     </a>
                     <?php
-                }?>
+                } ?>
             </div>
         </div>
     </div>
