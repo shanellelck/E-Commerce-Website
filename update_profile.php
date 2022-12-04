@@ -27,9 +27,13 @@ if(isset($_POST['update_profile'])){
     if ($_SESSION['user_type'] == 'customer'){
         mysqli_query($conn, "UPDATE `customer` SET Name ='$update_name',
         Phone_Num = '$update_phoneNum' WHERE ID = '$user_id'") or die('query failed');
+        $message[] =  'updated profile successfully!';
+
 
     }else if ($_SESSION['user_type'] == 'admin'){
         mysqli_query($conn, "UPDATE `admin` SET Name ='$update_name' WHERE ID = '$user_id'") or die('query failed');
+        $message[] =  'updated profile successfully!';
+
 
     }
 
@@ -73,7 +77,7 @@ if(isset($_POST['update_profile'])){
     <title>Update Profile</title>
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-input.css">
 
 
 </head>
@@ -93,7 +97,7 @@ if(isset($message)){
 
 
 <div class="update-profile">
-    <div class="box">
+
     <?php 
         $select_user = mysqli_query($conn, "SELECT * FROM `customer` WHERE ID = '$user_id'") or die('query failed');
         $select_admin = mysqli_query($conn, "SELECT * FROM `admin` WHERE ID = '$user_id'") or die('query failed');
@@ -109,31 +113,40 @@ if(isset($message)){
         <div class="flex">
          <h3>Update Profile</h1>
             <div class="inputBox">
+            <div class="inputContainer">
                 <span>email :</span>
                 <span class="box"><?php echo $fetch_profile['Email'];?></span>
+                </div>
+                <div class="inputContainer">
                 <span>name :</span>
                 <input type="text" name="update_name" value="<?php echo $fetch_profile['Name']?>"
                 class="box">
+                </div>
                 <?php if ($_SESSION['user_type'] == 'customer'): ?>
+                <div class="inputContainer">
                 <span>phone number :</span>
                 <input type="text" name="update_phoneNum" value="<?php echo $fetch_profile['Phone_Num']?>"
                 class="box">
+                </div>
                 <?php endif; ?>
-            </div>
-            <div class="inputBox">
+                <div class="inputContainer">
                 <input type="hidden" name="pass" value ="<?php echo $fetch_profile['Password']?>">
                 <span> password :</span>
                 <input type="password" name="update_pass" placeholder="enter your password" class="box">
+                </div>
+                <div class="inputContainer">
                 <span> new password :</span>
                 <input type="password" name="new_pass" placeholder="enter your new password" class="box">
+                </div>
+                <div class="inputContainer">
                 <span> confirm new password :</span>
                 <input type="password" name="confirm_new_pass" placeholder="confirm new password" class="box">
+                </div>
             </div>
         </div>
         <input type="submit" value="update profile" name ="update_profile" class="btn">
         <a href="profile.php" class="delete-btn">go back</a>
     </form>
     </div>
-</div>
 </body>
 </html>

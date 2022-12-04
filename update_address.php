@@ -52,15 +52,16 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Address</title>
 
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-input.css">
 
 
 </head>
 <body>
+<div class="update-address">
 <?php 
     if(isset($message)){
         foreach($message as $message){
@@ -83,14 +84,32 @@ if(isset($_POST['submit'])){
     <div class="box">
         <form action="" method="POST">
             <div class="flex">
-                <h3>Update Address</h1>
+                <h3>Update Address</h3>
                 <div class="inputBox">
+                <div class="inputContainer">
+                <span>Street Number:</span>
                 <input type="text" name = "street-num" placeholder="enter your street number" class="box">
+                </div>  
+                <div class="inputContainer">
+                <span>Street Name:</span>
                 <input type="text" name = "street-name" placeholder="enter your street name" class="box">
+                </div>  
+                <div class="inputContainer">
+                <span>City:</span>
                 <input type="text" name = "city" placeholder="enter your city" class="box">
+                </div>  
+                <div class="inputContainer">
+                <span>Province:</span>
                 <input type="text" name = "province" placeholder="enter your province" class="box">
+                </div>  
+                <div class="inputContainer">
+                <span>Postal Code:</span>
                 <input type="text" name = "postal-code" placeholder="enter your postal code" class="box">
+                </div>  
+                <div class="inputContainer">
+                <span>Country</span>
                 <input type="text" name = "country" placeholder="enter your country" class="box">
+                </div>  
                 <input type="submit" value="save address" name="submit" class="btn">
                 <a href="profile.php" class="delete-btn">go back</a>
                 </div>
@@ -98,6 +117,7 @@ if(isset($_POST['submit'])){
         </form>
     </div>
     </section>
+    </div> 
     
 </body>
 </html>

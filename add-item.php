@@ -15,16 +15,10 @@
    if(isset($_POST['add_item'])){
 
       $id = mysqli_real_escape_string($conn, $_POST['item_ID']);
-      $name = mysqli_real_escape_string($conn, $_POST['item_name']);
       $colour = mysqli_real_escape_string($conn, $_POST['item_colour']);
       $size = mysqli_real_escape_string($conn, $_POST['item_size']);
       $quantity = mysqli_real_escape_string($conn, $_POST['item_quantity']);
-      $category = mysqli_real_escape_string($conn, $_POST['item_category']);
-      $price = mysqli_real_escape_string($conn, $_POST['item_price']);
-      $admin_ID = mysqli_real_escape_string($conn, $user_id);
-      $add_Date = date('Y-m-d');
-      $supplier = mysqli_real_escape_string($conn, $_POST['item_supplier']);
-      $description = mysqli_real_escape_string($conn, $_POST['item_details']);
+      $model = mysqli_real_escape_string($conn, $_POST['item_model']);
       
  
       $image = $_FILES["item_image"]["name"];
@@ -40,15 +34,15 @@
       if(mysqli_num_rows($select_itemID) > 0){
           $message[] = 'Item ID already exist!';
       }else{
-          $insert_item = mysqli_query($conn, "INSERT INTO `item` (Item_ID, Description, Price, Name, Colour, Size, Quantity, Category_ID, Admin_ID, Add_Date, Supplier_Email_Address, Image)
-          VALUES ('$id','$description','$price','$name','$colour', '$size','$quantity','$category','$admin_ID','$add_Date','$supplier','$image_folder')") or die('query failed');
+          $insert_item = mysqli_query($conn, "INSERT INTO `item` (Item_ID, Model_ID, Colour, Size, Quantity, Image)
+          VALUES ('$id','$model','$colour', '$size','$quantity','$image_folder')") or die('query failed');
       
          if($insert_item){
             if($image_size > 2000000){
                $message[] = 'image size is too large!';
                }else{
                move_uploaded_file($image_tmp_name, $image_folder);
-               $message[] = 'product added successfully!';
+               $message[] = 'item added successfully!';
                }
             }
    
@@ -66,7 +60,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Item</title>
       <!-- custom css file link  -->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style-input.css">
 </head>
 <body>
 <?php 
@@ -81,47 +75,61 @@
         }
     }
 ?>
-<section class="add-item">
+<div class="add-item">
+<section class="form-container">
 
-   <h1 class="title">Add new item</h1>
+   <h3 class="title">Add New Item</h3>
 
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
-         <input type="text" name="item_ID" class="box" required placeholder="enter item ID">
-         <input type="text" name="item_name" class="box" required placeholder="enter item name">
-         <input type="text" name="item_colour" class="box" required placeholder="enter item colour">
-         <input type="text" name="item_size" class="box" required placeholder="enter item size">
-         <select name="item_category" class="box" required>
-            <option value="" selected disabled>select category</option>
+
+         <div class="inputContainer">
+         <span>Item ID :</span>
+         <input type="text" name="item_ID" class="box" required placeholder="enter item ID" >
+         </div>
+
+         <div class="inputContainer">
+         <span>Item Model :</span>
+         <select name="item_model" class="box" required>
+            <option value="" selected disabled>select model</option>
             <?php 
-            $sql = mysqli_query($conn, "SELECT * FROM category");
+            $sql = mysqli_query($conn, "SELECT * FROM model");
             while ($row = $sql->fetch_assoc()){
-            echo "<option value=".$row['Category_ID'].">" . $row['Category_Name'] . "</option>";
-            }
-            ?>
-         </select>
-         <select name="item_supplier" class="box" required>
-            <option value="" selected disabled>select supplier</option>
-            <?php 
-            $sql = mysqli_query($conn, "SELECT * FROM supplier");
-            while ($row = $sql->fetch_assoc()){
-            echo "<option value=".$row['Email_Address'].">" . $row['Email_Address'] . "</option>";
+            echo "<option value=".$row['Model_ID'].">" . $row['Model_Name'] . "</option>";
             }
             ?>
          </select>
          </div>
-         <div class="inputBox">
-         <input type="number" min="0.00" max= "999.99" step="0.01" class="box" required placeholder="enter item price" name="item_price">
+
+         <div class="inputContainer">
+         <span>Item Colour :</span>
+         <input type="text" name="item_colour" class="box" required placeholder="enter item colour">
+         </div>
+
+         <div class="inputContainer">
+         <span>Item Size :</span>
+         <input type="text" name="item_size" class="box" required placeholder="enter item size">
+         </div>
+
+         <div class="inputContainer">
+         <span>Item Quantity :</span>
          <input type="number" min="0" class="box" required placeholder="enter item quantity" name="item_quantity">
+         </div>
+
+         <div class="inputContainer">
+         <span>Item Image :</span>
          <input type="file" name="item_image" required class="box" accept="image/jpg, image/jpeg, image/png">
          </div>
+
+         <input type="submit" class="btn" value="add item" name="add_item">
+         </div>
       </div>
-      <textarea name="item_details" class="box" required placeholder="enter item details" cols="30" rows="10"></textarea>
-      <input type="submit" class="btn" value="add item" name="add_item">
    </form>
+   
 
 </section>
+</div>
     
 </body>
 </html>
