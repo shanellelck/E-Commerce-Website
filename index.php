@@ -13,7 +13,7 @@
 
 
         // $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-        $SELECT_NEW_ARRIVALS = "SELECT * FROM `model` ORDER BY Add_Date Desc LIMIT 10";
+        $SELECT_NEW_ARRIVALS = "SELECT * FROM `model` WHERE Remove_Date IS NULL ORDER BY Add_Date Desc LIMIT 10";
         $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
         $SELECT_NEW_BOTTOMS = "SELECT * FROM `item` WHERE description LIKE '%pants%' OR '%shorts%'";

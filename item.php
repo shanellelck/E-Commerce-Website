@@ -24,6 +24,8 @@
     $SELECT_REVIEWS = "SELECT * FROM review WHERE Model_ID = '$item_id';";
     $find_reviews = $conn->query($SELECT_REVIEWS);
 
+    
+
 ?>
 
 
@@ -157,9 +159,16 @@
                     </form>
                 <?php elseif ($_SESSION['user_type'] == 'admin'): ?>
                     <div class="admin-btn">
+                        
                         <form method="post">
                             <input type="submit" name="btn-update" value="Update" class="update-btn">
                         </form>
+
+                        <?php if (isset($_POST['btn-remove'])) {
+                            $date = date("Y-m-d");
+                            $SET_REMOVE_DATE = "UPDATE Model set Remove_Date = '$date' WHERE Model_ID = '$item_id';";
+                            $update_remove_date = $conn->query($SET_REMOVE_DATE);
+                        }?>
                         <form method="post">
                             <input type="submit" name="btn-remove" value="Remove" class="remove-btn">
                         </form>
