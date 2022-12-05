@@ -45,10 +45,10 @@
 
             <div class="box">
                 <?php 
-                $select_suppliers = mysqli_query($conn, "SELECT * FROM `supplier`");
-                $number_of_suppliers = mysqli_num_rows($select_suppliers);
+                $select_orders = mysqli_query($conn, "SELECT * FROM `order`");
+                $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
-                <h3><?php echo $number_of_suppliers; ?></h3> 
+                <h3><?php echo $number_of_orders; ?></h3> 
                 <p>Orders</p>
                 <a href="order_list.php" class="btn">view Orders</a>               
             </div>
