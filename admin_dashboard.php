@@ -3,15 +3,6 @@
    include 'connection.php';
    include 'admin_header.php';
  
-   session_start();
-   
-   if(isset($_SESSION['user_id'])){
-       $user_id = $_SESSION['user_id'];
-   }else{
-       $user_id ='';
-       header('location:index.php');
-   }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +30,7 @@
                 ?>
                 <h3><?php echo $number_of_customers; ?></h3>
                 <p>Customers</p>
-                <a href="customers.php" class="btn">view customers</a>
+                <a href="customer_list.php" class="btn">view customers</a>
             </div>
 
             <div class="box">
@@ -59,7 +50,7 @@
                 ?>
                 <h3><?php echo $number_of_suppliers; ?></h3> 
                 <p>Orders</p>
-                <a href="orders.php" class="btn">view Orders</a>               
+                <a href="order_list.php" class="btn">view Orders</a>               
             </div>
 
         
