@@ -16,10 +16,10 @@
         $SELECT_NEW_ARRIVALS = "SELECT * FROM `model` ORDER BY Add_Date Desc LIMIT 10";
         $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
-        $SELECT_NEW_BOTTOMS = "SELECT * FROM `model` WHERE description LIKE '%pants%' OR '%shorts%'";
+        $SELECT_NEW_BOTTOMS = "SELECT * FROM `item` WHERE description LIKE '%pants%' OR '%shorts%'";
         $new_bottoms = $conn->query($SELECT_NEW_BOTTOMS);
 
-        $SELECT_NEW_DRESSES = "SELECT * FROM `model` WHERE Category_ID = 'DRESSES'";
+        $SELECT_NEW_DRESSES = "SELECT * FROM `item` WHERE Category_ID = 'DRESSES'";
         $new_dresses = $conn->query($SELECT_NEW_DRESSES);
 
 

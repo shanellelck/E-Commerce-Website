@@ -1,0 +1,71 @@
+
+table{
+    display: flex; 
+    width:auto ;
+    align: "right";
+    border-collapse: collapse;}
+
+th, td{
+    text-align: center;
+}
+
+.flex-container{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+.flex-box{
+    width: auto;
+    height:auto;
+    font-size:20px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 10px;
+    border: .2rem solid black;
+
+}
+
+
+
+
+
+
+
+.anybutton {
+                
+    width:100px;
+    height:40px;
+    position: fixed;
+
+    background: black; 
+    padding: 10px 20px;
+    border-radius: 4px;
+    bottom: 10px;
+    right: 20px;
+    color: white;
+    }
+
+    .flex-container{
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+    .flex-box{
+        width: auto;
+        height:auto;
+        font-size:20px;
+        text-align: center;
+        border-radius: 20px;
+        margin: 10px;
+        border: .2rem solid black;
+
+    }
+/*
+    <link rel="stylesheet" type="text/css" href="style-checkout.css">
+*/

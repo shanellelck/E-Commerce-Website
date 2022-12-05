@@ -48,6 +48,7 @@
                 <P class="item-view-size-info">Size:</p>
                 <div class="sizes">
                    <?php $item = mysqli_fetch_assoc($find_model_items);
+                //    this part below might just be nonsense right now so just ignore it
                         if ($size['S'] == NULL || $size['S'] == '0'){
                             $size_s = 'not-available';
                         }else $size_s = 'available';
