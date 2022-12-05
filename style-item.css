@@ -6,6 +6,7 @@
 
 .item-view {
     padding: 80px 0;
+    min-width: fit-content;
 }
 
 .item-view-name, .item-view-price, .item-view-colour, .item-view-size, .item-view-size-info {

@@ -15,7 +15,7 @@
     $SELECT_NEW_ARRIVALS = "SELECT * FROM model WHERE Model_ID = '$item_id';";
     $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
 
-    $SELECT_MODEL_ITEMS = "SELECT * FROM model AS M, item as I WHERE M.Model_ID = I.Model_ID;";
+    $SELECT_MODEL_ITEMS = "SELECT * FROM model AS M, item as I WHERE M.Model_ID = I.Model_ID AND M.Model_ID = '$item_id';";
     $find_model_items = $conn->query($SELECT_MODEL_ITEMS);
 
     // $SELECT_SIZES = "SELECT * FROM size WHERE Item_ID = '$item_id'";
@@ -24,7 +24,6 @@
     $SELECT_REVIEWS = "SELECT * FROM review WHERE Model_ID = '$item_id';";
     $find_reviews = $conn->query($SELECT_REVIEWS);
 
-    
 ?>
 
 
@@ -37,14 +36,16 @@
                 <img src="<?= $model['Image'];?>"/>
             </div>
             <div class="item-view">
-                <p class="item-view-name"><?= $model['Name'];?></p>
+                <p class="item-view-name"><?= $model['Model_Name'];?></p>
                 <p class="item-view-price">$<?= $model['Price'];?></p>
                 <div class="review-line">
                     <!-- include the stars here -->
                     <a href="#review-section">Rating</a>
                 </div>
-                <p class="item-view-colour"><?= $model['Colour'];?></p>
-                <P class="item-view-colour-blob"></p>
+                <p class="item-view-colour">Colour:</p>
+                
+                
+            </div>
                 <P class="item-view-size-info">Size:</p>
                 <div class="sizes">
                    <?php $item = mysqli_fetch_assoc($find_model_items);
