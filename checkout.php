@@ -79,7 +79,7 @@
                         <td style="text-align: left">Delivery Fees</td>
                         <td></td>
                         <?php $delivery_cost = 5?>
-                        <td style="text-align: center">$<?= $delivery_cost?></td>
+                        <td style="text-align: right">$<?= $delivery_cost?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>
@@ -118,7 +118,7 @@
                     $pickup = "Pick-up";
                     $clicked_delivery = $_POST['delivery_method'];
                     if(($_POST['delivery_method']) == $shipping){
-                        echo $_POST['delivery_method'];
+                       
                         $delivery_cost = 5;
                         ?>
                     <h2>Shipping Address</h2>
@@ -136,39 +136,37 @@
                         $delivery_cost = 0;
                     }
                    
-                    $order_date = date("Y/m/d");
-                    $find_customer_orders = mysqli_query($conn, "SELECT * FROM orders as O, order_contains_items AS OC, customer AS C WHERE O.Customer_ID = '$user_id' AND O.Order_Status = 'Payment Pending';");
-
-
-                    if ($placed_order = mysqli_fetch_assoc($find_customer_orders)) {
-                        $select_order =  mysqli_query($conn, "SELECT Order_ID FROM `orders` WHERE Customer_ID = '$user_id' AND Order_Status = 'Payment Pending';") or die('query failed');
-                        $fetch_order = mysqli_fetch_assoc($select_order);
-                        $order_id = $fetch_order['Order_ID'];
-                    } else {
-                        $insert_order = mysqli_query($conn, "INSERT INTO `orders`(Order_Date, Order_Status, Delivery_Method, Delivery_Cost, Customer_ID) VALUES ('$order_date','Payment Pending', '$clicked_delivery', '$delivery_cost','$user_id' )") or die('query failed');
-                        $select_order =  mysqli_query($conn, "SELECT Order_ID FROM `orders` WHERE	Customer_ID = '$user_id' AND	Order_Date = '$order_date' Order by Order_ID desc limit 1") or die('query failed');
-                        $fetch_order = mysqli_fetch_assoc($select_order);
-                        $order_id = $fetch_order['Order_ID'];
-                        // $test_insert = mysqli_query($conn, "INSERT INTO `order_contains_items` (`Order_ID`, `Item_ID`, `Quantity`) VALUES ('406000040', 'CZHDBLM01', '1')");
-                    
-                        $SELECT_I_IN_CART = "SELECT * FROM cart_contains_item AS C, item AS I, model as M WHERE C.Customer_ID ='$user_id' AND I.Item_ID = C.Item_ID AND I.Model_ID = M.Model_ID;";
-                        $i_in_cart = $conn->query($SELECT_I_IN_CART); 
-                        while($item = mysqli_fetch_assoc($i_in_cart)):
-                            $item_id = $item['Item_ID'];
-                            $item_qty = $item['Quantity_In_Cart'];
-                            $insert_order_contains = mysqli_query($conn, "INSERT INTO order_contains_items VALUES ('$order_id', '$item_id', '$item_qty');");
-                            
-                    endwhile;
-                    }?>
-                    
-                        
-                    <a href="payment.php?order_id=<?php echo $order_id ?>&delivery_cost=<?php echo $delivery_cost ?>">
-                    <button type="button" class="btn">Proceed to Payment</button>
+                 
+                } ?>
+                <h2>Payment Details</h2>
+                <div class="inputBox">
+                            <div>
+                                <input type="text" name = "card-num" placeholder="Card Number" class="box">
+                            </div>
+                            <br>
+                            <div>
+                                <input type="month" name = "expiration-date" placeholder="Expiration Date" class="box">
+                            </div>
+                            <br>
+                            <div>
+                                <input type="text" name = "cvc" placeholder="CVC" class="box">
+                            </div>
+                             <br>  
+                        </div>
+                <?php       
+                if(isset($_POST['delivery_method']) )
+                {    
+                        ?>
+                    <a href="orderconfirmation.php?clicked_delivery=<?php echo $clicked_delivery ?>   & delivery_cost=<?php echo $delivery_cost ?>">
+                    <button type="button" class="btn">Place Order</button>
                     </a>
                     <?php
-                } ?>
+                }?>
+                   
             </div>
         </div>
     </div>
 </body>
 </html>
+
+
