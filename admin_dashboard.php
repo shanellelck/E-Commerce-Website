@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="dashboard">
-    <h1 class="title">dashboard</h1>
+    <h1 class="title">Dashboard</h1>
         <div class="box-container">
             
             <div class="box">
@@ -29,8 +29,8 @@
                 $number_of_customers = mysqli_num_rows($select_customers);
                 ?>
                 <h3><?php echo $number_of_customers; ?></h3>
-                <p>Customers</p>
-                <a href="customer_list.php" class="btn">view customers</a>
+                <h2>Customers</h2>
+                <a href="customer_list.php" class="btn">View customers</a>
             </div>
 
             <div class="box">
@@ -39,8 +39,8 @@
                 $number_of_suppliers = mysqli_num_rows($select_suppliers);
                 ?>
                 <h3><?php echo $number_of_suppliers; ?></h3>                
-                <p>Suppliers</p>
-                <a href="supplier_list.php" class="btn">view Suppliers</a>
+                <h2>Suppliers</h2>
+                <a href="supplier_list.php" class="btn">View Suppliers</a>
             </div>
 
             <div class="box">
@@ -48,9 +48,9 @@
                 $select_orders = mysqli_query($conn, "SELECT * FROM `orders`");
                 $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
-                <h3><?php echo $number_of_orders; ?></h3> 
-                <p>Orders</p>
-                <a href="order_list.php" class="btn">view Orders</a>               
+                <h3><?php echo "$number_of_orders"; ?></h3> 
+                <h2>Orders</h2>
+                <a href="order_list.php" class="btn">View Orders</a>               
             </div>
 
         
