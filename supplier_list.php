@@ -36,6 +36,7 @@
             <th>Email Address</th>
             <th>Phone Number</th>
             <th style="text-align: center">Address</th>
+            <th style="text-align: center">Update</th>
         </tr>   
         
         <?php 
@@ -67,6 +68,9 @@
             <td> <?= $email?></td>
             <td> <?= $phone_number?></td>
             <td style="text-align: center"> <?= $address?></td>
+            <td style="text-align: center"> 
+            <a href="" button type="button" class="btn">Update</button></a>
+            </td>
 
         </tr>
         <?php endwhile; ?>
