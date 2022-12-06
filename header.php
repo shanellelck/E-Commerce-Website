@@ -38,7 +38,7 @@
                 </form>
                 <a class="right" id="home" href="./index.php">HOME</a>
                 <div class="right dropdown">
-                    <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING
+                    <button class="dropbtn" onclick="window.location.href='./index.php';">CLOTHING
                     </button>
                     <div class="dropdown-content">
                     <a href="./tops.php">Tops</a>

@@ -36,8 +36,8 @@
         </div>    
     </section>
 </body>
-<footer>
+<!-- <footer>
 <a>About Us</a>
 <a>Contact Us</a>
-</footer>
+</footer> -->
 

@@ -13,16 +13,17 @@
 
 
         // $SELECT_NEW_ARRIVALS = "SELECT * FROM item WHERE Category_ID ='SSH';";
-        $SELECT_NEW_ARRIVALS = "SELECT * FROM `model` WHERE Remove_Date IS NULL ORDER BY Add_Date Desc LIMIT 10";
-        $new_arrivals = $conn->query($SELECT_NEW_ARRIVALS);
+        $SELECT_NEW_TOPS = "SELECT * FROM `model` WHERE (Description LIKE '%hoodie%' OR Description LIKE '%sweater%') AND Remove_Date IS NULL ORDER BY Add_Date Desc LIMIT 10";
+        $new_arrivals = $conn->query($SELECT_NEW_TOPS);
 
-        $SELECT_NEW_BOTTOMS = "SELECT * FROM `item` WHERE description LIKE '%pants%' OR '%shorts%'";
+        $SELECT_NEW_BOTTOMS = "SELECT * FROM `model` WHERE (Description LIKE '%pants%' OR Description LIKE '%shorts%') AND Remove_Date IS NULL;";
         $new_bottoms = $conn->query($SELECT_NEW_BOTTOMS);
 
-        $SELECT_NEW_DRESSES = "SELECT * FROM `item` WHERE Category_ID = 'DRESSES'";
+        $SELECT_NEW_DRESSES = "SELECT * FROM `model` WHERE Description LIKE '%dress%' AND Remove_Date IS NULL;";
         $new_dresses = $conn->query($SELECT_NEW_DRESSES);
 
-
+        $SELECT_NEW_ACCESSORIES = "SELECT * FROM `model` WHERE Description LIKE '%accessory%' AND Remove_Date IS NULL;";
+        $new_accessories = $conn->query($SELECT_NEW_ACCESSORIES);
 ?>
 
 
@@ -57,9 +58,9 @@
                 while($bottom = mysqli_fetch_assoc($new_bottoms)):
             ?>
             <div class="item">
-                <?php $bottom_id = $bottom['Item_ID'] ?>
+                <?php $bottom_id = $bottom['Model_ID'] ?>
                 <p class="item-name"><?= $bottom['Name'];?></p>
-                <img src="<?= $bottom['Image'];?>"/>
+                <img src="<?= $bottom['Model_Image'];?>"/>
                 <p class="item-price">$<?= $bottom['Price'];?></p>
                 <a href="item.php?item_id=<?php echo $bottom_id ?>">
                     <button type="button" class="btn">More</button>
@@ -73,9 +74,9 @@
                 while($dress = mysqli_fetch_assoc($new_dresses)):
             ?>
             <div class="item">
-                <?php $dress_id = $dress['Item_ID'] ?>
+                <?php $dress_id = $dress['Model_ID'] ?>
                 <p class="item-name"><?= $dress['Name'];?></p>
-                <img src="<?= $dress['Image'];?>"/>
+                <img src="<?= $dress['Model_Image'];?>"/>
                 <p class="item-price">$<?= $dress['Price'];?></p>
                 <a href="item.php?item_id=<?php echo $dress_id ?>">
                     <button type="button" class="btn">More</button>
@@ -85,11 +86,23 @@
         </div>
         <h2>Accessories</h2>
         <div class="accessories">
-            
+        <?php 
+                while($dress = mysqli_fetch_assoc($new_accessories)):
+            ?>
+            <div class="item">
+                <?php $dress_id = $dress['Model_ID'] ?>
+                <p class="item-name"><?= $dress['Name'];?></p>
+                <img src="<?= $dress['Model_Image'];?>"/>
+                <p class="item-price">$<?= $dress['Price'];?></p>
+                <a href="item.php?item_id=<?php echo $dress_id ?>">
+                    <button type="button" class="btn">More</button>
+                </a>
+            </div>
+            <?php endwhile; ?>
         </div>
     </section>
 </body>
-<footer>
+<!-- <footer>
     <a>About Us</a>
     <a>Contact Us</a>
-</footer>
+</footer> -->
