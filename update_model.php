@@ -20,7 +20,7 @@
     $model_desc = $model['Description'];
     $model_price = $model['Price'];
     $model_name = $model['Model_Name'];
-    $image_path = $model['Image'];
+    $image_path = $model['Model_Image'];
 
 ?>
 <header>
@@ -85,6 +85,8 @@
                 $image_size = $_FILES["update_image"]["size"];
                 $image_tmp_name = $_FILES["update_image"]["tmp_name"];
                 $image_folder = "img/".$image;
+                $old_image = $_POST['update_p_image'];
+
 
                 $UPDATE_IMG ="UPDATE model SET Model_Image = '$image_folder' WHERE Model_ID = '$item_id';";
                 $set_img = $conn->query($UPDATE_IMG) or die('query failed');
@@ -93,6 +95,7 @@
                        echo 'image size is too large!';
                        }else{
                        move_uploaded_file($image_tmp_name, $image_folder);
+                       unlink('img/'.$old_image);
                        echo 'item added successfully!';
                        }
                     }
@@ -135,6 +138,7 @@
                 </div>
                 <div class="inputContainer">
                     <span>Image: </span>
+                    <input type="hidden" value="<?php echo $image_path ?>" name="update_p_image">
                     <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png">
                 </div>
             </div>
