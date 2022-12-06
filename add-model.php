@@ -37,7 +37,7 @@
       if(mysqli_num_rows($select_modelID) > 0){
           $message[] = 'model ID already exist!';
       }else{
-          $insert_model = mysqli_query($conn, "INSERT INTO `model` (Model_ID, Description, Price, Model_Name,  Total_Quantity, Admin_ID, Add_Date, Supplier_Email_Address, Image)
+          $insert_model = mysqli_query($conn, "INSERT INTO `model` (Model_ID, Description, Price, Model_Name,  Total_Quantity, Admin_ID, Add_Date, Supplier_Email_Address, Model_Image)
           VALUES ('$id','$description','$price','$name','$quantity','$admin_ID','$add_Date','$supplier','$image_folder')") or die('query failed');
       
          if($insert_model){
