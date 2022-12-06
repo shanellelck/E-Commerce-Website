@@ -46,7 +46,7 @@
                     <a href="./dresses.php">Dresses</a>
                     </div>
                 </div> 
-                <a class="right" href="#sale">SALE</a>
+               
                 <a class="right" href="./about_us.php">ABOUT US</a>
 
                 <?php if ($_SESSION['user_type'] == 'admin'): ?>
