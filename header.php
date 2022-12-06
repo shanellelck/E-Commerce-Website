@@ -52,8 +52,9 @@
                 <?php if ($_SESSION['user_type'] == 'admin'): ?>
                     <a class="right" href="./admin_dashboard.php">DASHBOARD</a>
                 <?php endif; ?>
-
-                <a class="right" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php if ($user_type == 'customer'): ?>
+                    <a class="right" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php endif; ?>
                 <a class="right" href="./profile.php"><i class="fa-solid fa-user"></i></a>
                 <a class="right" href ="logout.php">logout</a>
             </div>
