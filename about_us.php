@@ -62,7 +62,8 @@
 }
 </style>
         <div class="flex-container">
-        
+        <img src="img/about_us_img.jpg" width = "1300" height = "700" >
+
             <div class = "flex-box">
                 <p>We are proud to bring a special shopping experience to Calgary. Since 2014, The Store continues to be different from other retail stores with our beautiful store displays, carefully curated boutique clothing for all ages, and locally sourced featured products. Visit us in-store or shop online and find our collection of Clothing and Gifts.</p> 
                     <p>Locally Owned and Operated in Calgary, AB.</p>
