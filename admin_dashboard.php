@@ -40,7 +40,7 @@
                 ?>
                 <h3><?php echo $number_of_suppliers; ?></h3>                
                 <p>Suppliers</p>
-                <a href="suppliers.php" class="btn">view Suppliers</a>
+                <a href="supplier_list.php" class="btn">view Suppliers</a>
             </div>
 
             <div class="box">
