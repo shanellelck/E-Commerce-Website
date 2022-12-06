@@ -159,35 +159,11 @@ th, td{
     <div class = "flex-box">
         <h1 style = "text-align: center">Order Details</h1>
         <h3>Order ID:</h3> <?= $order_id?><br>
-        <h3>Customer ID:</h3> <?= $customer_id?><br>
         <h3>Order Date:</h3> <?= $order_date?><br>
         <h3>Delivery Method:</h3> <?= $delivery_method?><br>
+        <h3>Order Status:</h3> <?= $order_status?><br>
         <h3>Payment Method:</h3> <?= $payment_method?><br>
         <h3>Payment Reference Number:</h3> <?= $payment_ref_num?><br>
-        <h3>Order Status:</h3> <?= $order_status?> <p>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</p> <h3>Change Order Status</h3>
-        <form method=post>
-            <select name="status">
-                <option name = "status" value="change" selected>Change Order Status</option>
-                <option name = "status" value="Pending">Pending</option>
-                <option name = "status" value="Processing">Processing</option>
-                <option name = "status" value="Shipped" >Shipped</option>
-                <option name = "status" value="Received" >Received</option>
-            </select>
-            <button type = "submit" name = "change_status" class = "btn btn-dark my-5">Change Status</button>
-        </form>
-
-        <?php
-        if(isset($_POST['change_status']) ){
-            $status = $_POST['status'];
-            $update_status = mysqli_query($conn, "UPDATE orders SET Order_Status='$status' WHERE Order_ID = '$order_id';") or die('query failed');
-            $order_status = $status;
-           
-            header("location:order_details.php?order_status=" .$order_status."&order_date=" .$order_date."&order_id=" .$order_id."&delivery_method=" .$delivery_method."&customer_id=" .$customer_id);
-                
-               
-        }
-
-        ?>
 
         
             

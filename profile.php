@@ -36,6 +36,7 @@ if(isset($_SESSION['user_id'])){
 
         if(mysqli_num_rows($select_user) > 0){
         $fetch_profile = mysqli_fetch_assoc($select_user);
+
         }
         if(mysqli_num_rows($select_admin) > 0){
         $fetch_profile = mysqli_fetch_assoc($select_admin);
@@ -56,8 +57,16 @@ if(isset($_SESSION['user_id'])){
         else{echo $fetch_profile['Street_Num']. ' ' .$fetch_profile['Street_Name']. ' ' .
         $fetch_profile['City']. ' ' .$fetch_profile['Province']. ' ' .$fetch_profile['Postal_Code']. ' ' .$fetch_profile['Country'];};?></span></p>
         <a href="update_address.php" class="btn"> update address</a>
+        <br>
         <?php endif; ?>
- 
+        <?php
+          if(mysqli_num_rows($select_user) > 0){
+            ?>
+            <a href ="order_history.php" class="btn">View Order History</a>
+            <?php
+            }
+
+        ?>
 
 
 

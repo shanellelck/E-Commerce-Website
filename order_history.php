@@ -22,8 +22,10 @@
         header('location:index.php');
     }
 
-    $select_orders = "SELECT * FROM orders ORDER BY order_id DESC;";
+    $select_orders = "SELECT * FROM orders where Customer_ID = '$user_id' ORDER BY order_id DESC;";
     $orders = $conn->query($select_orders);
+   
+   
 ?>
 
 
@@ -36,14 +38,15 @@
             <th>Order Date</th>
             <th>Status</th>
             <th>Delivery Method</th>
-            <th>Customer ID</th>
             <th>Payment Method</th>
             <th>Payment Reference Number</th>
+            
             <th style="text-align: center">Details</th>
         </tr>   
         
         <?php 
             while($order = mysqli_fetch_assoc($orders)):
+               
         ?>   
         <tr>
         
@@ -52,8 +55,7 @@
             $order_date = $order['Order_Date']; 
             $order_status = $order['Order_Status']; 
             $delivery_method = $order['Delivery_Method']; 
-            $customer_id = $order['Customer_ID']; 
-            $select_payments = "SELECT * FROM payment where  Order_ID = '$order_id'";
+            $select_payments = "SELECT * FROM payment where Customer_ID = '$user_id' AND Order_ID = '$order_id'";
             $payments = $conn->query($select_payments);
             $payment = mysqli_fetch_assoc($payments);
             $payment_method = $payment['Payment_Type'];
@@ -64,12 +66,12 @@
             <td> <?= $order_date?></td>
             <td> <?= $order_status?></td>
             <td> <?= $delivery_method?></td>
-            <td style="text-align: center"> <?= $customer_id?></td>
             <td><?= $payment_method?></td>
             <td><?= $payment_ref_num?></td>
+
             <td style="text-align: center"> 
-            <a href="order_details.php?order_id=<?php echo $order_id ?> 
-            & customer_id=<?php echo $customer_id ?>
+            <a href="order_history_details.php?order_id=<?php echo $order_id ?> 
+           
             & order_date=<?php echo $order_date ?>
             & order_status=<?php echo $order_status ?>
             & payment_method=<?php echo $payment_method ?>

@@ -1,8 +1,8 @@
 <?php
     $servername = 'localhost';
-    $database = 'shop';
+    $database = 'shop4';
     $username = 'root';
-    $password = '';
+    $password = 'Nashwa@2002';
 
     // Create connection
 
