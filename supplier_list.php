@@ -63,13 +63,12 @@
                 $supplier['City']. ', ' .$supplier['Province']. ', ' .$supplier['Postal_Code']. ', ' .$supplier['Country'];
             }
             ?>
-           
             <td> <?= $name?></td>
             <td> <?= $email?></td>
             <td> <?= $phone_number?></td>
             <td style="text-align: center"> <?= $address?></td>
             <td style="text-align: center"> 
-            <a href="" button type="button" class="btn">Update</button></a>
+            <a href="update_supplier.php?email=<?php echo $email ?>" button type="button" class="btn">Update</button></a>
             </td>
 
         </tr>

@@ -42,7 +42,6 @@ if(isset($_POST['submit'])){
         $message[] = 'Please fill all entries';
     }
 
-
 }
 
 ?>
