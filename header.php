@@ -1,3 +1,16 @@
+<?php
+    session_start();    
+
+    $user_id = $_SESSION['user_id'];
+    $user_type = $_SESSION['user_type'];
+    if(!isset($user_id)){
+        header('location:login.php');
+    }
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,9 +49,9 @@
                 <a class="right" href="#sale">SALE</a>
                 <a class="right" href="#about-us">ABOUT US</a>
 
-
-                <a class="right" href="./admin_main_page.php">Admin</a>
-
+                <?php if ($_SESSION['user_type'] == 'admin'): ?>
+                    <a class="right" href="./admin_dashboard.php">DASHBOARD</a>
+                <?php endif; ?>
 
                 <a class="right" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                 <a class="right" href="./profile.php"><i class="fa-solid fa-user"></i></a>

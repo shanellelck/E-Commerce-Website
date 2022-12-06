@@ -30,7 +30,6 @@
 
     
     <nav class""navbar">
-        <a href="admin_dashboard.php">Dashboard</a>
 
         <a href="add-item.php">Add Item</a>
         <a href="add-model.php">Add Model</a>

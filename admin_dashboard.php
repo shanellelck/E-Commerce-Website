@@ -3,15 +3,6 @@
    include 'connection.php';
    include 'admin_header.php';
  
-   session_start();
-   
-   if(isset($_SESSION['user_id'])){
-       $user_id = $_SESSION['user_id'];
-   }else{
-       $user_id ='';
-       header('location:index.php');
-   }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +30,7 @@
                 ?>
                 <h3><?php echo $number_of_customers; ?></h3>
                 <p>Customers</p>
-                <a href="customers.php" class="btn">view customers</a>
+                <a href="customer_list.php" class="btn">view customers</a>
             </div>
 
             <div class="box">
@@ -54,12 +45,12 @@
 
             <div class="box">
                 <?php 
-                $select_suppliers = mysqli_query($conn, "SELECT * FROM `supplier`");
-                $number_of_suppliers = mysqli_num_rows($select_suppliers);
+                $select_orders = mysqli_query($conn, "SELECT * FROM `order`");
+                $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
-                <h3><?php echo $number_of_suppliers; ?></h3> 
+                <h3><?php echo $number_of_orders; ?></h3> 
                 <p>Orders</p>
-                <a href="orders.php" class="btn">view Orders</a>               
+                <a href="order_list.php" class="btn">view Orders</a>               
             </div>
 
         
