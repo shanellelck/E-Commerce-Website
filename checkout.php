@@ -33,6 +33,8 @@
         <table  align = "right" >
             <tr>
                 <th>Product</th>
+                <th>Colour</th>
+                <th>Size</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
             </tr>   
@@ -47,9 +49,15 @@
                         <div>
                         <p class="item-name-cart"><?= $item['Name'];?></p>
                         </div>
+                        
                     </div>
                 </td>
-                <?php $item_quantity = $item['Quantity_In_Cart'] ?>
+                <?php 
+                $item_colour = $item['Colour'];
+                $item_size = $item['Size'];
+                $item_quantity = $item['Quantity_In_Cart'] ?>
+                <td><?= $item_colour?></td>
+                <td><?= $item_size?></td>
                 <td style="text-align: center"><p class="item-quantity-cart"><?= $item['Quantity_In_Cart'];?></p></td>
                 
                 <td  style="text-align: center">$<?= $item['Price'] * $item['Quantity_In_Cart'];?></td>
@@ -60,32 +68,42 @@
                     <th >Order Summary</th>
                     <th>  </th>
                     <th>  </th>
+                    <th>  </th>
+                    <th>  </th>
                 </tr>
                 <?php $items_in_final_cart['Total_Price'] ?>
                 <?php $tax = $items_in_final_cart['Total_Price'] * 0.05 ?>
                 <tr>
                     <td style="text-align: left">Subtotal</td>
                     <td></td>
-                    <td >$<?= $items_in_final_cart['Total_Price'] ?></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] ?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left">Tax</td>
                     <td></td>
-                    <td >$<?= $tax?></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $tax?></td>
                 </tr>
                 <?php if(($_POST['delivery_method']) == 'Shipping'): ?>
                     <tr>
                         <?php $delivery_cost = 5 ?>
                         <td style="text-align: left">Delivery Fees</td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                         <?php $delivery_cost = 5?>
-                        <td style="text-align: right">$<?= $delivery_cost?></td>
+                        <td style="text-align: center">$<?= $delivery_cost?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>
                     <td style="text-align: left">Total</td>
                     <td></td>
-                    <td >$<?= $items_in_final_cart['Total_Price'] + $tax + $delivery_cost?></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $items_in_final_cart['Total_Price'] + $tax + $delivery_cost?></td>
                 </tr>
             
         </table>
