@@ -164,7 +164,7 @@ th, td{
         <h3>Delivery Method:</h3> <?= $delivery_method?><br>
         <h3>Payment Method:</h3> <?= $payment_method?><br>
         <h3>Payment Reference Number:</h3> <?= $payment_ref_num?><br>
-        <h3>Order Status:</h3> <?= $order_status?> <p>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</p> <h3>Change Order Status</h3>
+        <h3>Order Status:</h3> <?= $order_status?> <p>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</p> <br><h3>Change Order Status:</h3>
         <form method=post>
             <select name="status">
                 <option name = "status" value="change" selected>Change Order Status</option>
