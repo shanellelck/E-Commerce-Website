@@ -41,9 +41,10 @@
                     <button class="dropbtn" onclick="window.location.href='./clothing.php';">CLOTHING
                     </button>
                     <div class="dropdown-content">
-                    <a href="#">Tops</a>
-                    <a href="#">Bottoms</a>
+                    <a href="./tops.php">Tops</a>
+                    <a href="./bottoms.php">Bottoms</a>
                     <a href="./dresses.php">Dresses</a>
+                    <a href="./accessories.php">Accessories</a>
                     </div>
                 </div> 
                

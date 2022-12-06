@@ -8,3 +8,15 @@ input[type="submit"] {
     border-bottom: 2px solid grey;
     /* background:linear-gradient(180deg, transparent 60%, salmon 40%); */
 }
+
+.total-price {
+    display: block;
+    float: right;
+}
+
+.checkout-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+

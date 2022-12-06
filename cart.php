@@ -98,8 +98,9 @@
                 <td>$<?= $items_in_final_cart['Total_Price'] + $tax ?></td>
             </tr>
         </table>
-        <div class =  "float-end">
+        <div class =  "checkout-btn">
             <a href = "checkout.php" class = "btn btn-outline-primary">Proceed to checkout</a>
         </div>
+    </div>
         
 </div>
