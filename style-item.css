@@ -5,6 +5,7 @@
 }
 
 .item-view {
+    display: block;
     padding: 80px 0;
     min-width: fit-content;
 }
@@ -82,3 +83,17 @@
     display: flex;
     flex-direction: row;
 }
+
+.colour-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+/* .btn-colour:hover {
+    color: red;
+}
+
+
+.btn-colour:focus {
+    border: 2px solid red;
+} */

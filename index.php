@@ -43,7 +43,7 @@
             <div class="item">
                 <?php $item_id = $item['Model_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
-                <img src="<?= $item['Image'];?>"/>
+                <img src="<?= $item['Model_Image'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
                 <a href="item.php?item_id=<?php echo $item_id ?>">
                     <button type="button" class="btn">More</button>
@@ -90,6 +90,6 @@
     </section>
 </body>
 <footer>
-<a>About Us</a>
-<a>Contact Us</a>
+    <a>About Us</a>
+    <a>Contact Us</a>
 </footer>
