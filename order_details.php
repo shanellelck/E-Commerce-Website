@@ -24,10 +24,103 @@
         $user_id ='';
         header('location:index.php');
     }
-
-   
+    $SELECT_ITEMS_IN_ORDER = "SELECT * FROM order_contains_items AS O, item AS I, model as M WHERE O.order_id ='$order_id' AND I.Item_ID = O.Item_ID AND I.Model_ID = M.Model_ID;";
+    $items_in_order = $conn->query($SELECT_ITEMS_IN_ORDER);
+    $SELECT_FINAL_ORDER = "SELECT * FROM order WHERE order_ID ='$order_id';"; 
+    $items_in_final_order = mysqli_fetch_assoc($conn->query($SELECT_FINAL_ORDER));
+    
 ?>
+<style>
+table{
+    display: flex; 
+    width:auto ;
+    align: "right";
+    border-collapse: collapse;}
 
+th, td{
+    text-align: center;
+}
+</style>
+<div class ="small-container order-details-page">
+        <table  align = "right" >
+            <tr>
+                <th>Product</th>
+                <th>Colour</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>   
+            
+            <?php 
+            $total_price ="0";
+                while($item = mysqli_fetch_assoc($items_in_order)):
+            ?>   
+            <tr>
+                <td >
+                    <div class= "order-info">
+                        <img src="<?= $item['Image'];?>"/>
+                        <div>
+                        <p class="item-name-cart"><?= $item['Name'];?></p>
+                        </div>
+                    </div>
+                </td>
+                <?php 
+                $item_colour = $item['Colour'];
+                $item_size = $item['Size'];
+                $item_quantity = $item['Quantity_In_Order']; 
+                $total_price = $total_price + ($item['Price'] * $item['Quantity_In_Order']);?>
+                <td><?= $item_colour?></td>
+                <td><?= $item_size?></td>
+                <td style="text-align: center"><p class="item-quantity-cart"><?= $item_quantity;?></p></td>
+                
+                <td  style="text-align: center">$<?= $item['Price'] * $item['Quantity_In_Order'];?></td>
+            </tr>     
+            <?php endwhile; ?>
+            
+                <tr>
+                    <th >Order Summary</th>
+                    <th>  </th>
+                    <th>  </th>
+                    <th>  </th>
+                    <th>  </th>
+                </tr>
+               
+                <?php $tax = $total_price * 0.05 ?>
+                <tr>
+                    <td style="text-align: left">Subtotal</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $total_price ?></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left">Tax</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $tax?></td>
+                </tr>
+                <?php if( $delivery_method == 'Shipping'): ?>
+                    <tr>
+                        <?php $delivery_cost = 5 ?>
+                        <td style="text-align: left">Delivery Fees</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <?php $delivery_cost = 5?>
+                        <td style="text-align: center">$<?= $delivery_cost?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <td style="text-align: left">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">$<?= $total_price + $tax + $delivery_cost?></td>
+                </tr>
+            
+        </table>
+</div>
 
 <div class="flex-container">
     <style type = "text/css">
@@ -98,10 +191,8 @@
         
         
     </div>
+    
 </div>
-
-
-
 
 
 
