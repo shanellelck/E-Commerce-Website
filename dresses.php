@@ -10,7 +10,7 @@
         header('location:login.php');
     };
 
-        $SELECT_DRESSES = "SELECT * FROM item WHERE Category_ID ='DRESSES';";
+        $SELECT_DRESSES = "SELECT * FROM model WHERE Description LIKE '%dress%';";
         $dresses = $conn->query($SELECT_DRESSES);
 ?>
 
@@ -24,9 +24,9 @@
                 while($item = mysqli_fetch_assoc($dresses)):
             ?>
             <div class="item">
-                <?php $item_id = $item['Item_ID'] ?>
+                <?php $item_id = $item['Model_ID'] ?>
                 <p class="item-name"><?= $item['Name'];?></p>
-                <img src="<?= $item['Image'];?>"/>
+                <img src="<?= $item['Model_Image'];?>"/>
                 <p class="item-price">$<?= $item['Price'];?></p>
                 <a href="item.php?item_id=<?php echo $item_id ?>">
                     <button type="button" class="btn">More</button>
