@@ -45,7 +45,7 @@
 
             <div class="box">
                 <?php 
-                $select_orders = mysqli_query($conn, "SELECT * FROM `order`");
+                $select_orders = mysqli_query($conn, "SELECT * FROM `orders`");
                 $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
                 <h3><?php echo $number_of_orders; ?></h3> 
