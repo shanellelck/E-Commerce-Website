@@ -2,3 +2,37 @@ label, input[type="text"] {
     padding: 10px;
     margin: 10px;
 }
+
+.update-model{
+    padding:1rem;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.flex{
+    gap:1rem;
+    margin-top: 1.5rem;
+}
+
+.inputBox{
+    display: inline-block;
+}
+.inputBox .inputContainer{
+    width: 500px;
+    padding: 0.5rem;
+}
+.inputBox .inputContainer span{
+    display: flex;
+    width: 100%;
+    text-align: left;
+    padding: 0.2rem;
+}
+.inputBox .inputContainer input{
+    width: 100%;
+}
+.inputBox .inputContainer .box{
+    text-align: left;
+    width: 100%;
+    padding: 0.8rem;
+}

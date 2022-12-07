@@ -30,6 +30,16 @@
 
 
 <body>
+        <?php if(isset($message)){
+            foreach($message as $message){
+                echo '
+                <div class="message">
+                    <span>'.$message.'</span>
+                    <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+                </div>
+                ';
+            }
+        }?>
        <div class="item-details">
             <?php 
                 while($model = mysqli_fetch_assoc($new_arrivals)):
@@ -51,7 +61,7 @@
                     ?>
                         <form method="post">
                             <?php $item_colour = $item_for_colour['Colour']; ?>
-                            <input type="submit" xlass ='btn-colour' name="btn-colour" value="<?=$item_colour?>">
+                            <input type="submit" class ='btn-colour' name="btn-colour" value="<?=$item_colour?>">
                         </form>
                     <?php endwhile; ?>
 
@@ -129,16 +139,7 @@
                     if (isset($_POST['btn-add-to-cart'])) {
                         $final_item_id = $_POST['id'];
                         $final_item_size = $_POST['size'];
-                        // echo $final_item_id;
-                        // echo $final_item_size;
-                        // echo $final_size;
-                        // $SELECT_ITEM = "SELECT * FROM model AS M, item as I WHERE M.Model_ID = I.Model_ID, I.size = '$final_size';";
-                        // $find_item = $conn->query($SELECT_MODEL_ITEMS);
-                        // if (mysqli_fetch_array($find_item)) {
-                        //     $item = mysqli_fetch_assoc($find_item);
-                        //     $item_id = $item['Item_ID'];
-                        //     echo $item_id;
-                        // }
+                        
                         $FIND_IN_CART = "SELECT * FROM CART_CONTAINS_ITEM WHERE Item_ID = '$final_item_id' AND Customer_ID = '$user_id';";  // check if item added is already in the cart, then just update quantity
                         $item_price = $item['Price'];
                         $UPDATE_FINAL_CART = "UPDATE CART SET Total_Price=Total_Price+$item_price, Total_Number_Of_Item=Total_Number_Of_Item+1 WHERE Customer_ID = '$user_id';";
@@ -165,9 +166,7 @@
                     }    
                         
                 ?>
-                <!-- <form method="post">
-                    <input type="submit" name="btn-add-to-cart" value="Add to Cart" class="add-btn">
-                </form> -->
+                
                 <?php if ($_SESSION['user_type'] == 'customer'): ?> 
                     <form method="post">
                         <input type="submit" name="btn-add-to-cart" value="Add to Cart" class="add-btn">
@@ -188,7 +187,7 @@
                             $date = date("Y-m-d");
                             $SET_REMOVE_DATE = "UPDATE Model set Remove_Date = '$date' WHERE Model_ID = '$item_id';";
                             if ($update_remove_date = $conn->query($SET_REMOVE_DATE))
-                                echo "Model successfully removed";
+                                $message[] = "Model removed successfully!";
                         }?>
                         <form method="post">
                             <input type="submit" name="btn-remove" value="Remove" class="remove-btn">

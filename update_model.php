@@ -111,7 +111,7 @@
         } ?>
 
 
-    <div class="update-profile">
+    <div class="update-model">
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="flex">
          <h3>Update Model</h1>
@@ -143,8 +143,8 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="update_model" name ="update_model" class="btn">
-        <a href="update_model.php?item_id=<?php echo $item_id ?>" class="">go back</a>
+        <input type="submit" value="Update Model" name ="update_model" class="btn">
+        <a href="item.php?item_id=<?php echo $item_id ?>" class="delete-btn">go back</a>
     </form>
     </div>
 

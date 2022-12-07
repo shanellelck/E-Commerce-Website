@@ -10,7 +10,7 @@
         header('location:login.php');
     };
 
-        $SELECT_ACCESSORIES = "SELECT * FROM model WHERE Description LIKE '%accessory%';";
+        $SELECT_ACCESSORIES = "SELECT * FROM model WHERE Description LIKE '%accessory%' AND Remove_Date IS NULL;";
         $accessories = $conn->query($SELECT_ACCESSORIES);
 ?>
 

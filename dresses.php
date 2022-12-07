@@ -10,7 +10,7 @@
         header('location:login.php');
     };
 
-        $SELECT_DRESSES = "SELECT * FROM model WHERE Description LIKE '%dress%';";
+        $SELECT_DRESSES = "SELECT * FROM model WHERE Description LIKE '%dress%' AND Remove_Date IS NULL;";
         $dresses = $conn->query($SELECT_DRESSES);
 ?>
 

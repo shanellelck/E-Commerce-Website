@@ -29,7 +29,7 @@
     <div class="flex">
 
     
-    <nav class""navbar">
+    <nav class = "navbar">
 
         <a href="add-item.php">Add Item</a>
         <a href="add-model.php">Add Model</a>

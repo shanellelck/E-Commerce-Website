@@ -20,14 +20,14 @@ if(isset($_POST['submit'])){
     $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
     $update_phoneNum = mysqli_real_escape_string($conn, $_POST['update_phoneNum']);
     
-    $select = mysqli_query($conn, "SELECT * FROM `supplier` WHERE Email = '$update_email'") or die('query failed');
+    $select = mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$update_email'") or die('query failed');
 
 
     if(mysqli_num_rows($select) > 0 && $update_email != $email){
-        $message[] = 'supplier email already exist'; 
+        $message[] = 'customer email already exist'; 
     }else{
-        mysqli_query($conn, "UPDATE `supplier` SET Name = '$update_name', Email = '$update_email', Phone_number = '$update_phoneNum' WHERE Email = '$email'") or die('query failed');
-        $message[] = 'supplier info updated successfully!';
+        mysqli_query($conn, "UPDATE `customer` SET Name = '$update_name', Email = '$update_email', Phone_number = '$update_phoneNum' WHERE Email = '$email'") or die('query failed');
+        $message[] = 'customer info updated successfully!';
     }
     
  
@@ -52,7 +52,7 @@ if(isset($_POST['submit'])){
     if(!empty($update_streetNum) && !empty($update_streetName) && !empty($update_city)
     && !empty($update_province) && !empty($update_postal) && !empty($update_country)){
 
-        mysqli_query($conn, "UPDATE `supplier` SET Street_number = '$update_streetNum', Street_name = '$update_streetName', 
+        mysqli_query($conn, "UPDATE `customer` SET Street_number = '$update_streetNum', Street_name = '$update_streetName', 
         City = '$update_city', Province = '$update_province', Postal_code = '$update_postal', Country = '$update_country'
         WHERE Email = '$email'") or die('query failed');
      
@@ -80,7 +80,7 @@ if(isset($_POST['submit'])){
 
 </head>
 <body>
-<div class="update-supplier">
+<div class="update-customer">
 <?php 
     if(isset($message)){
         foreach($message as $message){
@@ -95,83 +95,83 @@ if(isset($_POST['submit'])){
 ?>
     <section class="form-container">
     <?php 
-        $select_supplier = mysqli_query($conn, "SELECT * FROM `supplier` WHERE Email = '$email'") or die('query failed');
-        if(mysqli_num_rows($select_supplier) > 0){
-        $fetch_supplier = mysqli_fetch_assoc($select_supplier);
+        $select_customer = mysqli_query($conn, "SELECT * FROM `customer` WHERE Email = '$email'") or die('query failed');
+        if(mysqli_num_rows($select_customer) > 0){
+        $fetch_customer = mysqli_fetch_assoc($select_customer);
         }
     ?>
     <div class="box">
         <form action="" method="POST">
             <div class="flex">
-                <h3>Update Supplier Info</h3>
+                <h3>Update Customer Info</h3>
                 
                 <div class="inputBox">
                 
                 <div class="inputContainer">
                 <span>Email :</span>
-                <input type="text" name="update_email" value="<?php echo $fetch_supplier['Email']?>"
+                <input type="text" name="update_email" value="<?php echo $fetch_customer['Email']?>"
                 required class="box">
                 </div>
                 
                 <div class="inputContainer">
                 <span>Name :</span>
-                <input type="text" name="update_name" value="<?php echo $fetch_supplier['Name']?>"
+                <input type="text" name="update_name" value="<?php echo $fetch_customer['Name']?>"
                 required class="box">
                 </div>
                 
                 <div class="inputContainer">
                 <span>Phone number :</span>
-                <input type="text" name="update_phoneNum" value="<?php echo $fetch_supplier['Phone_number']?>"
+                <input type="text" name="update_phoneNum" value="<?php echo $fetch_customer['Phone_number']?>"
                 required class="box">
                 </div>
 
-                <h3>Update Supplier Address</h3>
+                <h3>Update Customer Address</h3>
                 
                 <div class="inputContainer">
                 <span>Street Number:</span>
-                <input type="text" name = "street-num" <?php if($fetch_supplier['Street_number'] == ''): ?>
+                <input type="text" name = "street-num" <?php if($fetch_customer['Street_number'] == ''): ?>
                 placeholder = "enter your street number"
-                <?php else : ?> value = "<?php echo $fetch_supplier['Street_number']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['Street_number']?>"
                 <?php endif; ?> class="box"></div>  
                 
                 <div class="inputContainer">
                 <span>Street Name:</span>
-                <input type="text" name = "street-name" <?php if($fetch_supplier['Street_name'] == ''): ?>
+                <input type="text" name = "street-name" <?php if($fetch_customer['Street_name'] == ''): ?>
                 placeholder = "enter your street name"
-                <?php else : ?> value = "<?php echo $fetch_supplier['Street_name']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['Street_name']?>"
                 <?php endif; ?> class="box"></div>  
 
                 <div class="inputContainer">
                 <span>City:</span>
-                <input type="text" name = "city" <?php if($fetch_supplier['City'] == ''): ?>
+                <input type="text" name = "city" <?php if($fetch_customer['City'] == ''): ?>
                 placeholder = "enter your city"
-                <?php else : ?> value = "<?php echo $fetch_supplier['City']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['City']?>"
                 <?php endif; ?> class="box"></div> 
 
                 <div class="inputContainer">
                 <span>Province:</span>
-                <input type="text" name = "province" <?php if($fetch_supplier['Province'] == ''): ?>
+                <input type="text" name = "province" <?php if($fetch_customer['Province'] == ''): ?>
                 placeholder = "enter your province"
-                <?php else : ?> value = "<?php echo $fetch_supplier['Province']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['Province']?>"
                 <?php endif; ?> class="box"></div>  
 
                 <div class="inputContainer">
                 <span>Postal Code:</span>
-                <input type="text" name = "postal-code" <?php if($fetch_supplier['Postal_code'] == ''): ?>
+                <input type="text" name = "postal-code" <?php if($fetch_customer['Postal_code'] == ''): ?>
                 placeholder = "enter your postal code"
-                <?php else : ?> value = "<?php echo $fetch_supplier['Postal_code']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['Postal_code']?>"
                 <?php endif; ?> class="box"></div> 
 
                 <div class="inputContainer">
                 <span>Country:</span>
-                <input type="text" name = "country" <?php if($fetch_supplier['Country'] == ''): ?>
+                <input type="text" name = "country" <?php if($fetch_customer['Country'] == ''): ?>
                 placeholder = "enter your country"
-                <?php else : ?> value = "<?php echo $fetch_supplier['Country']?>"
+                <?php else : ?> value = "<?php echo $fetch_customer['Country']?>"
                 <?php endif; ?> class="box">
                 </div>   
 
                 <input type="submit" value="save address" name="submit" class="btn">
-                <a href="supplier_list.php" class="delete-btn">go back</a>
+                <a href="customer_list.php" class="delete-btn">go back</a>
                 </div>
             </div>
         </form>

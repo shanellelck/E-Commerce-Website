@@ -29,10 +29,10 @@
 
 <body>
     <?php if ($_SESSION['user_type'] == 'admin'): ?>
-        <div class="admin-nav">
+        <!-- <div class="admin-nav">
             
         </div>
-        <a href="add-item.php" class="btn"> add item</a>
+        <a href="add-item.php" class="btn"> add item</a> -->
     <?php endif; ?>
     <section id="new-arrivals">
         <h1>New Arrivals</h1>

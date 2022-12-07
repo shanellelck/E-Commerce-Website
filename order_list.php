@@ -30,9 +30,9 @@
   
     <div class ="small-container cart-page">
     <h1 class="title">Orders</h1>
-    <table>
+    <table class="order-list">
         <tr>
-            <th>Order ID</th>
+            <th><p>Order ID<p></th>
             <th>Order Date</th>
             <th>Status</th>
             <th>Delivery Method</th>

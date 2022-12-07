@@ -27,7 +27,7 @@
 }
 
 .available {
-    width: 20px;
+    width: fit-content;
     padding: 5px;
     margin: 5px;
     border-radius: 20px;
@@ -36,7 +36,7 @@
 }
 
 .not-available {
-    width: 20px;
+    width: fit-content;
     padding: 5px;
     margin: 5px;
     border-radius: 20px;
@@ -87,13 +87,24 @@
 .colour-btns {
     display: flex;
     flex-direction: row;
+    
 }
 
-/* .btn-colour:hover {
-    color: red;
+.btn-colour{
+    border: none;
+    border: 2px solid lightgrey;
+    margin: 10px;
+    padding: 10px;
+}
+
+.btn-colour:active{
+    border: none;
+    border: 2px solid lightskyblue;
+    margin: 10px;
+    padding: 10px;
 }
 
 
-.btn-colour:focus {
+/* .btn-colour:focus {
     border: 2px solid red;
 } */

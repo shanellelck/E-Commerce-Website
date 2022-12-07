@@ -25,7 +25,7 @@
         <nav>
             <div class="navbar">
                 <a href='./index.php' class="logo">
-                    <img id="logo" src = './logo.jpg'>
+                    <img id="logo" src = './img/logo.png'>
                 </a>   
                 <?php 
                     if (isset($_POST['search-bar'])) {

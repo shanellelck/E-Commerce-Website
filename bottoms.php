@@ -10,7 +10,7 @@
         header('location:login.php');
     };
 
-        $SELECT_BOTTOMS = "SELECT * FROM model WHERE (Description LIKE '%pants%' OR Description LIKE '%shorts%');";
+        $SELECT_BOTTOMS = "SELECT * FROM model WHERE (Description LIKE '%pants%' OR Description LIKE '%shorts%') AND Remove_Date IS NULL;";
         $bottoms = $conn->query($SELECT_BOTTOMS);
 ?>
 
