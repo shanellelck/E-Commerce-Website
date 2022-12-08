@@ -22,6 +22,21 @@
     $model_name = $model['Model_Name'];
     $image_path = $model['Model_Image'];
 
+    $filter_update_model = filter_var($_POST['update_model'],FILTER_SANITIZE_STRING);
+    $update_model = mysqli_real_escape_string($conn, $filter_update_model);
+
+    $filter_update_id = filter_var($_POST['update_id'],FILTER_SANITIZE_STRING);
+    $update_id = mysqli_real_escape_string($conn, $filter_update_id);
+
+    $filter_update_desc = filter_var($_POST['update_desc'],FILTER_SANITIZE_STRING);
+    $update_desc = mysqli_real_escape_string($conn, $filter_update_desc);
+
+    $filter_update_price = filter_var($_POST['update_desc'],FILTER_SANITIZE_STRING);
+    $update_price = mysqli_real_escape_string($conn, $filter_update_price);
+
+    $filter_update_name = filter_var($_POST['update_desc'],FILTER_SANITIZE_STRING);
+    $update_name = mysqli_real_escape_string($conn, $filter_update_name);
+
 ?>
 <header>
     <link rel="stylesheet" type="text/css" href="update_item.css">
@@ -41,28 +56,29 @@
         
         <!-- supplier email address  -->
         <!-- image  -->
-        <?php if (isset($_POST['update_model'])) {
-            if (isset($_POST['update_id'])) {
-                if (($_POST['update_id'] != $model_id) && ($_POST['update_id'] != null)) {
-                    $new_id = $_POST['update_id'];
+        <?php if (isset($update_model)) {
+            if (isset($update_id)) {
+                
+                if (($update_id != $model_id) && ($update_id != null)) {
+                    $new_id = $update_id;
                     $UPDATE_MODEL_ID ="UPDATE model SET Model_ID = '$new_id' WHERE Model_ID = '$item_id'";
                     $set_id = $conn->query($UPDATE_MODEL_ID);
                     $model_id = $new_id;
                 }
                 // echo "GOOD";
             }
-            if (isset($_POST['update_desc'])) {
-                if (($_POST['update_desc'] != $model_desc) && ($_POST['update_desc'] != null)) {
-                    $new_desc = $_POST['update_desc'];
+            if (isset($update_desc)) {
+                if (($update_desc != $model_desc) && ($update_desc != null)) {
+                    $new_desc = $update_desc;
                     $UPDATE_DESC ="UPDATE model SET Description = '$new_desc' WHERE Model_ID = '$item_id'";
                     $set_desc = $conn->query($UPDATE_DESC);
                     $model_desc = $new_desc;
                 }
                 // echo "GOOD";
             }
-            if (isset($_POST['update_price'])) {
-                if (($_POST['update_price'] != $model_price) && ($_POST['update_price'] != null)) {
-                    $new_price = intval($_POST['update_price']);
+            if (isset($update_price)) {
+                if (($update_price != $model_price) && ($update_price != null)) {
+                    $new_price = intval($update_price);
                     // echo $new_price;
                     $UPDATE_PRICE ="UPDATE model SET Price = '$new_price' WHERE Model_ID = '$item_id';";
                     $set_price = $conn->query($UPDATE_PRICE);
@@ -70,9 +86,9 @@
                 }
                 // echo "GOOD";
             }
-            if (isset($_POST['update_name'])) {
-                if (($_POST['update_name'] != $model_name) && ($_POST['update_name'] != null)) {
-                    $new_name = $_POST['update_name'];
+            if (isset($update_name)) {
+                if (($update_name != $model_name) && ($update_name != null)) {
+                    $new_name = $$update_name;
                     $UPDATE_NAME ="UPDATE model SET Model_Name = '$new_name' WHERE Model_ID = '$item_id';";
                     $set_name = $conn->query($UPDATE_NAME);
                     $model_name = $new_name;
@@ -104,10 +120,6 @@
             $UPDATE_TABLE = "INSERT INTO model_update VALUES ('$user_id', '$item_id', '$date')";
             $set_update = $conn->query($UPDATE_TABLE);
 
-            // $UPDATE_ADMIN = "UPDATE model SET Admin_ID = '$user_id' WHERE Model_ID = '$item_id'";
-            // $set_admin = $conn->query($UPDATE_ADMIN);
-            // $UPDATE_PRICE = "UPDATE model SET Price = '30.00' WHERE Model_ID = '$item_id';";
-            // $set_price = $conn->query($UPDATE_PRICE);
         } ?>
 
 

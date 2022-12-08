@@ -99,7 +99,13 @@
             </tr>
         </table>
         <div class =  "checkout-btn">
+            <?php 
+                $check_cart = "SELECT * FROM cart_contains_item WHERE Customer_ID = '$user_id'";
+                $cart_items = $conn->query($check_cart);
+                if (mysqli_num_rows($cart_items) != 0):
+            ?> 
             <a href = "checkout.php" class = "btn btn-outline-primary">Proceed to checkout</a>
+            <?php endif; ?>
         </div>
     </div>
         

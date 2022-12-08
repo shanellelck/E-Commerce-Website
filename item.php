@@ -30,16 +30,6 @@
 
 
 <body>
-        <?php if(isset($message)){
-            foreach($message as $message){
-                echo '
-                <div class="message">
-                    <span>'.$message.'</span>
-                    <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-                </div>
-                ';
-            }
-        }?>
        <div class="item-details">
             <?php 
                 while($model = mysqli_fetch_assoc($new_arrivals)):
@@ -139,6 +129,10 @@
                     if (isset($_POST['btn-add-to-cart'])) {
                         $final_item_id = $_POST['id'];
                         $final_item_size = $_POST['size'];
+
+                        // if ($final_item_id == NULL && $final_item_size == NULL) {
+                        //     echo "Please select a colour and size first";
+                        // }
                         
                         $FIND_IN_CART = "SELECT * FROM CART_CONTAINS_ITEM WHERE Item_ID = '$final_item_id' AND Customer_ID = '$user_id';";  // check if item added is already in the cart, then just update quantity
                         $item_price = $item['Price'];
@@ -149,7 +143,7 @@
                             if ($conn->query($UPDATE_CART)  && $conn->query($UPDATE_FINAL_CART) == TRUE) {
                                 echo "Item added to cart successfully";
                               } else {
-                                echo "Error: " . $ADD_TO_CART . "<br>" . $conn->error;
+                                echo "Please select a colour and size first! Please do so by clicking on any size and colour of your choice";
                               }
                         } else {
                             $ADD_TO_CART = "INSERT INTO CART_CONTAINS_ITEM VALUES ('$final_item_id', '$user_id', '1', '$final_item_size');";
@@ -160,7 +154,7 @@
                                 echo "Item added to cart successfully!";
 
                               } else {
-                                echo "Error 2: " . $ADD_TO_CART . "<br>" . $conn->error;
+                                echo "Please select a colour and size first! Please do so by clicking on any size and colour of your choice";
                               }
                         }
                     }    

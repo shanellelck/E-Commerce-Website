@@ -104,7 +104,9 @@
     padding: 10px;
 }
 
-
+::selection {
+    border: 2px solid lightskyblue;
+}
 /* .btn-colour:focus {
     border: 2px solid red;
 } */
